@@ -7,6 +7,7 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="og:description" property="og:description" content="this is a description" />
       </Head>
 
       <p>hello world</p>
