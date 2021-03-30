@@ -13,7 +13,7 @@ export default function Job({ stars }) {
   return (
     <div className={styles.container}>
       <NextSeo
-        title="Simple Usage Example"
+        title="CVJOBS - INICIO"
         description={`${stars}`}
       />
       {/* <Head>
