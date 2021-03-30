@@ -1,48 +1,89 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowDropDown } from "@material-ui/icons";
+import { ArrowDropDown, PermIdentity } from "@material-ui/icons";
+import { useState } from "react";
+import { colors } from "../public/home.styles";
+
+
+
 export default function NavBar() {
+  const [openFirstMenu, setOpenFirstMenu] = useState(false);
+
   return (
     <Nav>
       <Wrapper>
         <LogoCtn>
-          <Image src="/logo.png" alt="me" width="167" height="50" />
+          <Image src="/job.png" alt="me" width="60" height="50" />
+          <p
+            style={{
+              color: "#ffff",
+              marginLeft: 10,
+              fontWeight: "bold",
+              fontSize: 18,
+            }}
+          >
+            CVJOBS
+          </p>
         </LogoCtn>
         <RightOptions>
           <LinksCtn>
             <Link href="/">
-              <FlexRow>
+              <FlexRow
+                onMouseEnter={() => setOpenFirstMenu(true)}
+                onMouseLeave={() => setOpenFirstMenu(false)}
+              >
                 <A>Inicio</A>
+                <RowWithColor />
+                {/* {openFirstMenu && <MenuOption>
+                    <p>Inicio</p>
+                    <p>Lol</p>
+                  </MenuOption>} */}
+              </FlexRow>
+            </Link>
+            <Link href="/job">
+              <FlexRow>
+                <A>Estoy buscando empleo</A>
                 <RowWithColor />
               </FlexRow>
             </Link>
             <Link href="/job">
               <FlexRow>
-              <A>Estoy buscando empleo</A>
-              <RowWithColor />
+                <A>Busco personal</A>
+                <RowWithColor />
               </FlexRow>
             </Link>
             <Link href="/job">
-              <A>Busco personal</A>
+              <FlexRow>
+                <A>Blog</A>
+                <RowWithColor />
+              </FlexRow>
             </Link>
             <Link href="/job">
-              <A>Blog</A>
+              <FlexRow>
+                <A>Pricing</A>
+                <RowWithColor />
+              </FlexRow>
             </Link>
             <Link href="/job">
-              <A>Pricing</A>
-            </Link>
-            <Link href="/job">
-              <A>Contacto</A>
+              <FlexRow>
+                <A>Contacto</A>
+                <RowWithColor />
+              </FlexRow>
             </Link>
           </LinksCtn>
           <LoginCtn>
-            <Link href="/job">
-              <LoginButton>Pricing</LoginButton>
-            </Link>
-            <Link href="/job">
-              <A>Pricing</A>
-            </Link>
+            <ButtonLogin>
+              <PermIdentity style={{color:"#ffff"}}/>
+              <Link href="/job">
+                <LoginButton>LOGIN</LoginButton>
+              </Link>
+            </ButtonLogin>
+            <ButttonSigup>
+              <Link href="/job">
+                <A>CREAR CUENTA</A>
+              </Link>
+            </ButttonSigup>
           </LoginCtn>
         </RightOptions>
       </Wrapper>
@@ -51,8 +92,30 @@ export default function NavBar() {
   );
 }
 
+const ButtonLogin = styled.div`
+  height:50px;
+  background-color:${colors.primaryColor};
+  display:flex;  
+  justify-content:center;
+  align-items:center;
+  padding-right:5px;
+  padding-left:5px;
+  border-radius:5px;  
+`;
+
+const ButttonSigup = styled.div``;
+
+const MenuOption = styled.div`
+  border: 1px solid white;
+  position: absolute;
+  top: 0;
+  margin-top: 40px;
+  width: 120px;
+  height: 120px;
+`;
+
 const RowWithColor = styled(ArrowDropDown)`
-  color: #23c0e9;
+  color: ${colors.primaryColor};
 `;
 const DrawerNavigation = styled.div`
   width: 275px;
@@ -64,13 +127,28 @@ const DrawerNavigation = styled.div`
 
 const RightOptions = styled.div`
   display: flex;
+  @media (max-width: 480px) {
+    display:none;
+  }
 `;
 const LoginCtn = styled.div`
   margin-left: 30px;
+  border-left: 2px solid gray;
+  padding-left:10px;
+  display:flex;
+  align-items:center;  
 `;
 const FlexRow = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+  transition: "border 1s";
+  position: relative;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 2px solid #23c0e9;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -104,22 +182,18 @@ const Nav = styled.nav`
   margin: auto;
   display: flex;
   /* background-color:#b2dfdb; */
-  border: 1px solid #b2dfdb;
+  /* border: 1px solid #b2dfdb; */
   align-items: center;
-  /* border-bottom: 1px solid #546e7a; */
+  border-bottom: 1px solid #757575;
 `;
 const A = styled.a`
   margin-left: 14px;
   font-size: 16px;
   border-spacing: 15px;
-  padding-bottom: 20px;
+  padding-bottom: 5px;
   color: #ffff;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-bottom: 2px solid transparent;
-  &:hover {
-    cursor: pointer;
-    border-bottom: 2px solid #ffff;
-  }
 `;
 const LoginButton = styled.a`
   margin-left: 14px;
@@ -132,9 +206,18 @@ const LoginButton = styled.a`
     border-bottom: 2px solid #ffff;
   }
 `;
-const LogoCtn = styled.div``;
+const LogoCtn = styled.div`
+  display: flex;
+  align-items: "center";
+`;
 
 const LinksCtn = styled.div`
-display:flex;
-
+  display: flex;
+  height:110px;
+  align-items:center;
+  justify-content:center;
+  /* border:1px solid white; */
+  @media (max-width: 480px) {
+    display:none;
+  }
 `;
