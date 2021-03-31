@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowDropDown, PermIdentity } from "@material-ui/icons";
+import { ArrowDropDown, PermIdentity, WorkOutline,Menu} from "@material-ui/icons";
 import { useState } from "react";
 import { colors } from "../public/home.styles";
 
@@ -14,7 +14,8 @@ export default function NavBar() {
     <Nav>
       <Wrapper>
         <LogoCtn>
-          <Image src="/job.png" alt="me" width="60" height="50" />
+          <WorkOutline style={{color:`${colors.primaryColor}`,fontSize:60}}/>
+          {/* <Image src="/job.png" alt="me" width="60" height="50" /> */}
           <p
             style={{
               color: "#ffff",
@@ -26,6 +27,9 @@ export default function NavBar() {
             CVJOBS
           </p>
         </LogoCtn>
+        <div>
+        <Menu style={{color:'#fff',fontSize:40}}/>
+        </div>
         <RightOptions>
           <LinksCtn>
             <Link href="/">
@@ -124,7 +128,6 @@ const DrawerNavigation = styled.div`
   position: absolute;
   z-index: 10;
 `;
-
 const RightOptions = styled.div`
   display: flex;
   @media (max-width: 480px) {

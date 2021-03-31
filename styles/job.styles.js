@@ -1,15 +1,15 @@
 import { makeStyles } from "@material-ui/core/styles";
 import styled, { keyframes } from "styled-components";
-
 export let colors = {
   primaryColor: "#3FD23C",
   second: "#23c0e9",
 };
+
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
-    backgroundColor:"#F9F9F9",
+    backgroundColor: "#F9F9F9",
   },
-  hero: {    
+  hero: {
     position: "relative",
     minHeight: "90vh",
     backgroundImage: `url('https://images.unsplash.com/photo-1577412647305-991150c7d163?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')`,
@@ -45,6 +45,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   flexColumn: {
+    marginTop:30,
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
@@ -71,7 +72,7 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: 15,
     border: "none",
     paddingLeft: 15,
-    paddingRight:15,
+    paddingRight: 15,
     fontSize: "inherit",
     color: "#535864",
     "&:focus": {
@@ -109,11 +110,13 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   searchTop: {
+    margin: 0,
     color: "#ffff",
     marginRight: 20,
   },
   topByOne: {
     color: "#ffffffcf",
+    margin: 0,
     marginRight: 20,
     transition: "color 1s",
     "&:hover": {
@@ -135,13 +138,20 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "flex-end",
   },
+  flexWrap: {
+    flexWrap: "wrap",
+    marginTop:20,
+    marginBottom:20
+  },
   categories: {
-    height: 156,
+    // height: 156,
     backgroundColor: "rgba(219,219,219,0.1)",
     display: "flex",
-    justifyContent: "space-around",
-    [theme.breakpoints.down("xs")]: {
-      flexWrap: "wrap",
+    flexWrap: "wrap",
+    justifyContent: "space-around",    
+
+    [theme.breakpoints.up("md")]: {
+      flexWrap: "no-wrap",
     },
   },
   category: {
@@ -176,6 +186,8 @@ export const useStyles = makeStyles((theme) => ({
     color: "#ffffffb8",
     margin: 0,
   },
+
+  
 }));
 
 export const Category = styled.div`
@@ -183,10 +195,10 @@ export const Category = styled.div`
   border-right: 1px solid gray;
   width: 50%;
   display: flex;
+  padding:15px 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   .ctgIcon {
     font-size: 2rem;
     margin: 0;
@@ -209,33 +221,43 @@ export const Category = styled.div`
       color: #ffff;
     }
   }
+
+  @media (min-width: 480px) {
+    
+    /* background-color: green; */
+  }
+  @media (min-width: 768px) {
+    /* background-color: black; */
+    width: 30%;
+  }
+  @media (min-width: 1024px) {
+    /* background-color: purple; */
+    width: 16.66%;
+    height:156px;
+  }
+  @media (min-width: 1200px) {
+    /* background-color: red; */
+  }
 `;
 
 export const Wrraper = styled.div`
   /* border: 1px solid red; */
-  height: 80vh;
+  /* height: 80vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 1200px;
+  padding:0 15px 0 15px;
   margin: auto;
+  @media (min-width: 480px) {
+    /* padding:0 10px 0 10px; */
+  }
+  @media (min-width: 1024px) {    
+    /* width: 16.66%; */
+      height: 80vh;
+  }
 
-  @media (max-width: 1200px) {
-    max-width: 1100px;
-  }
-  @media (max-width: 1024px) {
-    max-width: 924px;
-    /* border:2px solid blue; */
-  }
-  @media (max-width: 768px) {
-    max-width: 668px;
-  }
-  @media (max-width: 480px) {
-    max-width: 658px;
-    padding: 10px;
-    /* height:; */
-    /* background-color: green; */
-  }
+ 
 `;
 
 export const Container = styled.div`
@@ -250,7 +272,7 @@ export const Container = styled.div`
   /* border:2px solid red;   */
   margin: auto;
   margin-bottom: 300px;
-  background-color:#F9F9F9;
+  background-color: #f9f9f9;
 
   @media (max-width: 1200px) {
     max-width: 1100px;
@@ -293,7 +315,7 @@ const HeaderKeyFrame = keyframes`
 
 export const Hero = styled.div`
   /* border: 1px solid pink; */
-  min-height: 90vh;
+  /* min-height: 90vh; */
   background-position: top center;
   position: relative;
   background-repeat: no-repeat;
@@ -303,13 +325,38 @@ export const Hero = styled.div`
   background-size: 120% 100%;
   animation-iteration-count: infinite;
   background-image: url("https://images.unsplash.com/photo-1577412647305-991150c7d163?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+
+  @media (min-width: 480px) {
+    
+    background-color: green;
+  }
+  @media (min-width: 768px) {
+    background-color: black;
+    /* width: 30%; */
+  }
+  @media (min-width: 1024px) {
+    background-color: purple;
+    /* width: 16.66%; */
+      min-height: 90vh;
+  }
+  @media (min-width: 1200px) {
+    
+    /* background-color: red; */
+  }
+  
 `;
 export const Layer = styled.div`
-  height: 90vh;
+  /* height: 90vh; */
   /* background-color: #363c4b; */
   /* opacity: 0.8; */
   background: rgba(54, 60, 75, 0.9);
   overflow: hidden;
   height: 100%;
   z-index: 2;
+
+
+  @media (min-width: 1024px) {    
+    /* width: 16.66%; */
+      min-height: 90vh;
+  }
 `;
