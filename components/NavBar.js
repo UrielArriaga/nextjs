@@ -89,9 +89,8 @@ export default function NavBar() {
               </Link>
             </ButttonSigup>
           </LoginCtn>
-        </RightOptions>
-      </Wrapper>
-      {/* <DrawerNavigation/> */}
+        </RightOptions>         
+      </Wrapper>     
     </Nav>
   );
 }
@@ -125,7 +124,7 @@ const DrawerNavigation = styled.div`
   width: 275px;
   height: 100vh;
   background-color: #ffff;
-  position: absolute;
+  position: fixed;
   z-index: 10;
 `;
 const RightOptions = styled.div`

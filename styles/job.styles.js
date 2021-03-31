@@ -45,7 +45,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   flexColumn: {
-    marginTop:30,
+    marginTop: 30,
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
@@ -67,6 +67,23 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   input: {
+    width: "40%",
+    height: 50,
+    borderRadius: 15,
+    border: "none",
+    paddingLeft: 15,
+    paddingRight: 15,
+    fontSize: "inherit",
+    color: "#535864",
+    "&:focus": {
+      outline: "none",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "90%",
+      marginBottom: 20,
+    },
+  },
+  inputSelect: {
     width: "40%",
     height: 50,
     borderRadius: 15,
@@ -140,15 +157,15 @@ export const useStyles = makeStyles((theme) => ({
   },
   flexWrap: {
     flexWrap: "wrap",
-    marginTop:20,
-    marginBottom:20
+    marginTop: 20,
+    marginBottom: 20,
   },
   categories: {
     // height: 156,
     backgroundColor: "rgba(219,219,219,0.1)",
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-around",    
+    justifyContent: "space-around",
 
     [theme.breakpoints.up("md")]: {
       flexWrap: "no-wrap",
@@ -186,8 +203,6 @@ export const useStyles = makeStyles((theme) => ({
     color: "#ffffffb8",
     margin: 0,
   },
-
-  
 }));
 
 export const Category = styled.div`
@@ -195,7 +210,7 @@ export const Category = styled.div`
   border-right: 1px solid gray;
   width: 50%;
   display: flex;
-  padding:15px 10px;
+  padding: 15px 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -223,7 +238,6 @@ export const Category = styled.div`
   }
 
   @media (min-width: 480px) {
-    
     /* background-color: green; */
   }
   @media (min-width: 768px) {
@@ -233,7 +247,7 @@ export const Category = styled.div`
   @media (min-width: 1024px) {
     /* background-color: purple; */
     width: 16.66%;
-    height:156px;
+    height: 156px;
   }
   @media (min-width: 1200px) {
     /* background-color: red; */
@@ -247,17 +261,168 @@ export const Wrraper = styled.div`
   flex-direction: column;
   justify-content: center;
   max-width: 1200px;
-  padding:0 15px 0 15px;
+  padding: 0 15px 0 15px;
   margin: auto;
   @media (min-width: 480px) {
     /* padding:0 10px 0 10px; */
   }
-  @media (min-width: 1024px) {    
+  @media (min-width: 1024px) {
     /* width: 16.66%; */
-      height: 80vh;
+    height: 80vh;
+  }
+`;
+
+export const SectionJobs = styled.section`
+  /* border: 1px solid red; */
+  /* height: 80vh; */
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  padding: 20px 15px 100px 15px;
+  margin: auto;
+
+  .filter {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    .title {
+      font-weight: bold;
+      color: #37474f;
+      .dashed {
+        margin-top: 5px;
+        width: 30%;
+        border-top: 4px solid ${colors.primaryColor};
+      }
+    }
+
+    .secondHalf {
+      margin-top: 20px;
+      .option {
+        /* background: rgba(54, 60, 75, 0.1); */
+        border: 1px solid rgba(54, 60, 75, 0.2);
+        height: 50px;
+        padding-left: 30px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .option-select {
+        background: ${colors.primaryColor};
+        border: 1px solid rgba(54, 60, 75, 0.2);
+        height: 50px;
+        padding-left: 30px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        cursor: pointer;
+      }
+    }
   }
 
- 
+  @media (min-width: 480px) {
+    /* padding:0 10px 0 10px; */
+  }
+  @media (min-width: 1024px) {
+    /* width: 16.66%; */
+    height: 80vh;
+    /* border: 1px solid red; */
+    .filter {
+      /* border: 1px solid red; */
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      .title {
+        font-weight: bold;
+        color: #37474f;
+        .dashed {
+          margin-top: 5px;
+          width: 30%;
+          border-top: 4px solid ${colors.primaryColor};
+        }
+      }
+      .secondHalf {
+        display: flex;
+        margin-top: 0px;
+        .option {
+          /* background: rgba(54, 60, 75, 0.1); */
+          border: 1px solid rgba(54, 60, 75, 0.2);
+          height: 50px;
+          padding-left: 30px;
+          padding-right: 30px;
+          display: flex;
+          align-items: center;
+        }
+
+        .option-select {
+          background: ${colors.primaryColor};
+          border: 1px solid rgba(54, 60, 75, 0.2);
+          height: 50px;
+          padding-left: 30px;
+          padding-right: 30px;
+          display: flex;
+          align-items: center;
+          color: #fff;
+        }
+      }
+    }
+  }
+`;
+
+export const ItemJob = styled.div`
+  height: 180px;
+  /* border: 1px solid pink; */
+  display: flex;
+  background-color: #ffff;
+  box-shadow: 0 10px 6px -6px #777;
+  margin-bottom: 20px;
+  .leftSide {
+    /* border: 1px solid green; */
+    width: 25%;
+    display: flex;
+    align-items: flex-start;
+    /* align-items:center; */
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .rightSide {
+    /* border: 1px solid blue; */
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px 0 0 0px;
+
+    .title {
+      font-weight: bold;
+    }
+    .subTitle {
+      color: #666666;
+      margin-top: 5px;
+    }
+    .locationC {
+      margin-top: 10px;
+    }
+    .location {
+      color: #9a9a9a;
+    }
+    .timeJob {
+      background-color: #546e7a;
+      width: 150px;
+      display: flex;
+      justify-content: center;
+      padding: 5px;
+      border-radius: 5px;
+      margin-top: 20px;
+      p {
+        color: #ffff;
+      }
+    }
+  }
 `;
 
 export const Container = styled.div`
@@ -327,7 +492,6 @@ export const Hero = styled.div`
   background-image: url("https://images.unsplash.com/photo-1577412647305-991150c7d163?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
 
   @media (min-width: 480px) {
-    
     background-color: green;
   }
   @media (min-width: 768px) {
@@ -337,13 +501,11 @@ export const Hero = styled.div`
   @media (min-width: 1024px) {
     background-color: purple;
     /* width: 16.66%; */
-      min-height: 90vh;
+    min-height: 90vh;
   }
   @media (min-width: 1200px) {
-    
     /* background-color: red; */
   }
-  
 `;
 export const Layer = styled.div`
   /* height: 90vh; */
@@ -354,9 +516,8 @@ export const Layer = styled.div`
   height: 100%;
   z-index: 2;
 
-
-  @media (min-width: 1024px) {    
+  @media (min-width: 1024px) {
     /* width: 16.66%; */
-      min-height: 90vh;
+    min-height: 90vh;
   }
 `;

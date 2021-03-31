@@ -5,8 +5,13 @@ import {
   Code,
   CreditCard,
   LocalAtm,
+  LocationCity,
+  LocationOn,
   Search,
 } from "@material-ui/icons";
+import Image from "next/image";
+import { useState } from "react";
+
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import { colors } from "../public/home.styles";
@@ -15,13 +20,18 @@ import {
   Wrraper,
   FlexRow,
   FlexColumn,
+  SectionJobs,
   Hero,
   Category,
   Layer,
+  ItemJob,
 } from "../styles/job.styles";
 
 export default function Job({ stars }) {
   const stl = useStyles();
+
+  const [optionSelect, setOptionSelect] = useState('')
+
 
   return (
     <Box className={stl.wrapper}>
@@ -45,7 +55,18 @@ export default function Job({ stars }) {
                     className={stl.input}
                     placeholder="Palabras clave,Nombre de puesto,Descripcion,Tags"
                   />
-                  <input className={stl.input} placeholder="Lugar" />
+                  <select
+                    name="select"
+                    className={stl.inputSelect}
+                    value={"as"}
+                  >
+                    <option value="value1">Lugar</option>
+                    <option value="value2" selected>
+                      Value 2
+                    </option>
+                    <option value="value3">Value 3</option>
+                  </select>
+                  {/* <input className={stl.input} placeholder="Lugar" /> */}
                   <FlexRow className={stl.btnSearch}>
                     <Search />
                     <button className={stl.btnClick}>Buscar</button>
@@ -96,13 +117,60 @@ export default function Job({ stars }) {
                 </Category>
               </Box>
             </Box>
-          </Wrraper>          
+          </Wrraper>
         </Layer>
       </Hero>
+
+      <SectionJobs >
+        <div className="filter">
+          <div className="title">
+            <p>NUEVOS TRABAJOS</p>
+            <hr class="dashed"></hr>
+          </div>
+          <div className="secondHalf">
+            <div className={optionSelect === "recientes" ? "option-select" : "option"} onClick={()=> setOptionSelect('recientes')}>
+              <p>Nuevos</p>
+            </div>
+            <div className={optionSelect === "halftime" ? "option-select" : "option"} onClick={()=> setOptionSelect('halftime')}>
+              <p>Medio Tiempo</p>
+            </div>
+            <div className={optionSelect === "completetime" ? "option-select" : "option"} onClick={()=> setOptionSelect('completetime')}>
+              <p>Tiempo Completo</p>
+            </div>
+          </div>
+        </div>
+        {[1,2,3,4].map((item,índex)=> (
+            <ItemJob >
+            <div className="leftSide">
+              <Image src="/img1.png" alt="me" width="50" height="50" />
+            </div>
+            <div className="rightSide">
+              <p className="title">Software Engineer</p>
+              <p className="subTitle">MizTech</p>
+              <FlexRow className="locationC">
+                <FlexRow>
+                  <LocationOn style={{color:`${colors.primaryColor}`}}/>
+                  <p className="location">Ciudad de mexico</p>
+                </FlexRow>
+                <FlexRow>
+                <LocationOn style={{color:`${colors.primaryColor}`}}/>
+                <p className="location">New york</p>
+                </FlexRow>
+              </FlexRow>
+              <div className="timeJob">
+                <p>Tiempo completo</p>
+              </div>
+            </div>
+          </ItemJob>
+        ))}
+      </SectionJobs>
+
+
+
+
     </Box>
   );
 }
-
 
 const BookColor = styled(Bookmark)`
   color: ${colors.primaryColor};
