@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
 import {
   Bookmark,
   Build,
@@ -11,7 +11,6 @@ import {
 } from "@material-ui/icons";
 import Image from "next/image";
 import { useState } from "react";
-
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import { colors } from "../public/home.styles";
@@ -25,13 +24,14 @@ import {
   Category,
   Layer,
   ItemJob,
+  ChildContainer,
+  JobPopular
 } from "../styles/job.styles";
 
-export default function Job({ stars }) {
+export default function Job() {
   const stl = useStyles();
 
-  const [optionSelect, setOptionSelect] = useState('')
-
+  const [optionSelect, setOptionSelect] = useState("");
 
   return (
     <Box className={stl.wrapper}>
@@ -69,7 +69,11 @@ export default function Job({ stars }) {
                   {/* <input className={stl.input} placeholder="Lugar" /> */}
                   <FlexRow className={stl.btnSearch}>
                     <Search />
-                    <button className={stl.btnClick}>Buscar</button>
+                    <input
+                      type="button"
+                      className={stl.btnClick}
+                      value="Buscar"
+                    />
                   </FlexRow>
                 </Box>
                 <FlexRow className={stl.flexWrap}>
@@ -120,54 +124,82 @@ export default function Job({ stars }) {
           </Wrraper>
         </Layer>
       </Hero>
-
-      <SectionJobs >
-        <div className="filter">
-          <div className="title">
-            <p>NUEVOS TRABAJOS</p>
-            <hr class="dashed"></hr>
-          </div>
-          <div className="secondHalf">
-            <div className={optionSelect === "recientes" ? "option-select" : "option"} onClick={()=> setOptionSelect('recientes')}>
-              <p>Nuevos</p>
-            </div>
-            <div className={optionSelect === "halftime" ? "option-select" : "option"} onClick={()=> setOptionSelect('halftime')}>
-              <p>Medio Tiempo</p>
-            </div>
-            <div className={optionSelect === "completetime" ? "option-select" : "option"} onClick={()=> setOptionSelect('completetime')}>
-              <p>Tiempo Completo</p>
-            </div>
-          </div>
-        </div>
-        {[1,2,3,4].map((item,índex)=> (
-            <ItemJob >
-            <div className="leftSide">
-              <Image src="/img1.png" alt="me" width="50" height="50" />
-            </div>
-            <div className="rightSide">
-              <p className="title">Software Engineer</p>
-              <p className="subTitle">MizTech</p>
-              <FlexRow className="locationC">
-                <FlexRow>
-                  <LocationOn style={{color:`${colors.primaryColor}`}}/>
-                  <p className="location">Ciudad de mexico</p>
-                </FlexRow>
-                <FlexRow>
-                <LocationOn style={{color:`${colors.primaryColor}`}}/>
-                <p className="location">New york</p>
-                </FlexRow>
-              </FlexRow>
-              <div className="timeJob">
-                <p>Tiempo completo</p>
+      <div style={{ marginTop: 100 }}></div>
+      <ChildContainer>
+      <Grid container>
+        <Grid item  md={12} lg={9} xs={12}>
+          <SectionJobs>
+            <div className="filter">
+              <div className="title">
+                <p>NUEVOS TRABAJOS</p>
+                <hr class="dashed"></hr>
+              </div>
+              <div className="secondHalf">
+                <div
+                  className={
+                    optionSelect === "recientes" ? "option-select" : "option"
+                  }
+                  onClick={() => setOptionSelect("recientes")}
+                >
+                  <p>Nuevos</p>
+                </div>
+                <div
+                  className={
+                    optionSelect === "halftime" ? "option-select" : "option"
+                  }
+                  onClick={() => setOptionSelect("halftime")}
+                >
+                  <p>Medio Tiempo</p>
+                </div>
+                <div
+                  className={
+                    optionSelect === "completetime" ? "option-select" : "option"
+                  }
+                  onClick={() => setOptionSelect("completetime")}
+                >
+                  <p>Tiempo Completo</p>
+                </div>
               </div>
             </div>
-          </ItemJob>
-        ))}
-      </SectionJobs>
+            {[1, 2, 3, 4].map((item, índex) => (
+              <ItemJob>
+                <div className="leftSide">
+                  <Image src="/img1.png" alt="me" width="50" height="50" />
+                </div>
+                <div className="rightSide">
+                  <p className="title">Software Engineer</p>
+                  <p className="subTitle">MizTech</p>
+                  <FlexRow className="locationC">
+                    <FlexRow>
+                      <LocationOn style={{ color: `${colors.primaryColor}` }} />
+                      <p className="location">Ciudad de mexico</p>
+                    </FlexRow>
+                    <FlexRow>
+                      <LocationOn style={{ color: `${colors.primaryColor}` }} />
+                      <p className="location">New york</p>
+                    </FlexRow>
+                  </FlexRow>
+                  <div className="timeJob">
+                    <p>Tiempo completo</p>
+                  </div>
+                </div>
+                {/* <div className="actions">
 
+            </div> */}
+              </ItemJob>
+            ))}
+          </SectionJobs>
+        </Grid>
 
-
-
+        <Grid item md={12}  xs={12} lg={3}>
+          <div >
+              <JobPopular>
+                
+              </JobPopular>
+          </div>
+        </Grid>
+      </Grid>
+      </ChildContainer>
     </Box>
   );
 }
