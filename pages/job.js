@@ -321,7 +321,7 @@ export default function Job() {
               </Box>
               <Box className="info">
                 <h4>Buscar empleo</h4>
-                <p>
+                <p> 
                   Ad sit cillum aute sit et ad fugiat cupidatat mollit occaecat
                   sunt dolore deserunt ullamco.
                 </p>
