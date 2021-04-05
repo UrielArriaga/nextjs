@@ -1,5 +1,8 @@
 import { Box, Grid } from "@material-ui/core";
 import {
+  AddCircle,
+  AddCircleOutline,
+  ArrowForwardIos,
   ArrowRight,
   Bookmark,
   Build,
@@ -38,6 +41,8 @@ import {
   Test,
   NumbersSection,
   BestSection,
+  PaymentSection,
+  AppSection,
 } from "../styles/job.styles";
 
 export default function Job() {
@@ -141,7 +146,7 @@ export default function Job() {
             <SectionJobs>
               <div className="filter">
                 <div className="title">
-                  <p>NUEVOS TRABAJOS</p>
+                  <h4>NUEVOS TRABAJOS</h4>
                   <hr className="dashed"></hr>
                 </div>
                 <div className="secondHalf">
@@ -175,7 +180,7 @@ export default function Job() {
               </div>
 
               {[1, 2, 3, 5].map((item, index) => (
-                <ItemJob key={index}>
+                <ItemJob key={index}>                   
                   <div className="leftSide">
                     <Image
                       className="img"
@@ -193,19 +198,22 @@ export default function Job() {
                         <LocationOn
                           style={{ color: `${colors.primaryColor}` }}
                         />
-                        <p className="location">Ciudad de mexico</p>
-                      </FlexRow>
-                      <FlexRow>
-                        <LocationOn
-                          style={{ color: `${colors.primaryColor}` }}
-                        />
-                        <p className="location">New york</p>
-                      </FlexRow>
+                        <p className="location">Ciudad de mexico, Centro </p>
+                      </FlexRow>                    
                     </FlexRow>
                     <div className="timeJob">
                       <p>Tiempo completo</p>
                     </div>
                   </div>
+                  <Link href="/Jobdetail">
+                  <Box className="actions">
+                    <input
+                      type="button"
+                      value="Aplicar Ahora"
+                      className="btn_apply"
+                    />
+                  </Box>
+                  </Link>
                 </ItemJob>
               ))}
 
@@ -243,7 +251,7 @@ export default function Job() {
                       <input
                         className="btn_apply"
                         type="button"
-                        value="Aplicar Ahora"
+                        value="Busco Talento"
                       />
                     </Box>
                   </Box>
@@ -306,13 +314,24 @@ export default function Job() {
       </JobsContainer>
 
       <NumbersSection>
-        <Box className="item_count"></Box>
-        <Box className="item_count"></Box>
-        <Box className="item_count"></Box>
-        <Box className="item_count"></Box>
+        <Box className="item_count">
+          <p className="count">2540 +</p>
+        </Box>
+        <Box className="item_count bg_dark ">
+        <p className="count">2540 +</p>
+        </Box>
+        <Box className="item_count">
+        <p className="count">2540 +</p>
+        </Box>
+        <Box className="item_count  bg_dark">
+        <p className="count">2540 +</p>
+        </Box>
       </NumbersSection>
 
       <BestSection>
+        <Box className="heading">
+          <h4>¿POR QUE USAR CVJOBS?</h4>
+        </Box>
         <Box className="container">
           <Box className="row">
             <Box className="item_offer">
@@ -321,13 +340,12 @@ export default function Job() {
               </Box>
               <Box className="info">
                 <h4>Buscar empleo</h4>
-                <p> 
+                <p>
                   Ad sit cillum aute sit et ad fugiat cupidatat mollit occaecat
                   sunt dolore deserunt ullamco.
                 </p>
               </Box>
             </Box>
-
             <Box className="item_offer">
               <Box>
                 <VerifiedUser className="icon" />
@@ -394,6 +412,124 @@ export default function Job() {
           </Box>
         </Box>
       </BestSection>
+
+      <PaymentSection>
+        <Box className="item_pay">
+          <Box className="heading">
+          <FlexColumn>
+            <h4>PLAN BASICO</h4>
+            <hr style={{border:'1px solid #23C0E9',marginTop:5}}/>
+            </FlexColumn>
+            <Box className="price">
+              <p className="price_number">$1000MXN</p>
+            </Box>
+          </Box>
+
+          <Box className="features">
+            <Box className="divider">
+              <AddCircle />
+              <p>Publica 1 oferta laboral</p>
+            </Box>
+
+            <Box className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </Box>
+            <Box className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </Box>
+            <Box className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </Box>
+          </Box>
+
+          <Box className="action">
+            <input className="btn_apply" type="button" value="Aplicar Ahora" />
+          </Box>
+        </Box>
+        <Box className="item_pay">
+          <Box className="heading">
+            <FlexColumn>
+            <h4>PLAN BASICO</h4>
+            <hr style={{border:'1px solid #37D09C',marginTop:5}}/>
+            </FlexColumn>
+            <Box className="price bg_green">
+              <p className="price_number">$1000MXN</p>
+            </Box>
+          </Box>
+
+          <Box className="features">
+            <FlexRow className="divider">
+              <AddCircle />
+              <p>Publica 1 oferta laboral</p>
+            </FlexRow>
+
+            <FlexRow className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </FlexRow>
+            <FlexRow className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </FlexRow>
+            <FlexRow className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </FlexRow>
+          </Box>
+
+          <Box className="action">
+            <input className="btn_apply" type="button" value="Aplicar Ahora" />
+          </Box>
+        </Box>
+        <Box className="item_pay">
+          <Box className="heading">
+          <FlexColumn>
+            <h4>PLAN BASICO</h4>
+            <hr style={{border:'1px solid #F36969',marginTop:5}}/>
+            </FlexColumn>
+            <Box className="price bg_red">
+              <p className="price_number">$1000MXN</p>
+            </Box>
+          </Box>
+
+          <Box className="features">
+            <FlexRow className="divider">
+              <AddCircle />
+              <p>Publica 1 oferta laboral</p>
+            </FlexRow>
+
+            <FlexRow className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </FlexRow>
+            <FlexRow className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </FlexRow>
+            <FlexRow className="divider">
+              <AddCircle />
+              <p>1 Mes de duracion</p>
+            </FlexRow>
+          </Box>
+
+          <Box className="action">
+            <input className="btn_apply" type="button" value="Aplicar Ahora" />{" "}
+          </Box>
+        </Box>
+      </PaymentSection>
+
+
+      <AppSection>        
+        <Box className="photoapp">
+
+        </Box>
+        <Box className="info">
+
+        </Box>
+      </AppSection>
     </Box>
   );
 }

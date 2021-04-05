@@ -14,7 +14,11 @@ const sizes = {
 const sharedProps = css`
   padding: 20px 15px 10px 15px;
 `;
-
+const centerContent = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const breakpoint = (
   cssProp = "padding", // the CSS property to apply to the breakpoints
   cssPropUnits = "px", // the units of the CSS property (can set equal to "" and apply units to values directly)
@@ -36,7 +40,7 @@ export const breakpoint = (
 };
 
 export const breakpoints = {
-  xs: 480,
+  xs: 576,
   sm: 768,
   md: 992,
   lg: 1200,
@@ -96,20 +100,8 @@ export const Hero = styled.div`
   animation-iteration-count: infinite;
   background-image: url("https://images.unsplash.com/photo-1577412647305-991150c7d163?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
 
-  @media (min-width: 480px) {
-    background-color: green;
-  }
-  @media (min-width: 768px) {
-    background-color: black;
-    /* width: 30%; */
-  }
-  @media (min-width: 1024px) {
-    background-color: purple;
-    /* width: 16.66%; */
+  @media ${device.md} {
     min-height: 90vh;
-  }
-  @media (min-width: 1200px) {
-    /* background-color: red; */
   }
 `;
 export const Layer = styled.div`
@@ -118,8 +110,7 @@ export const Layer = styled.div`
   height: 100%;
   z-index: 2;
 
-  @media (min-width: 1024px) {
-    /* width: 16.66%; */
+  @media ${device.md} {
     min-height: 90vh;
   }
 `;
@@ -256,6 +247,7 @@ export const SectionJobs = styled.section`
     .title {
       font-weight: bold;
       color: #37474f;
+      font-size: 20px;
       .dashed {
         margin-top: 5px;
         width: 30%;
@@ -291,6 +283,17 @@ export const SectionJobs = styled.section`
         color: #fff;
         cursor: pointer;
       }
+
+      @media ${device.md} {
+        div:nth-child(1) {
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+        }
+        div:nth-child(3) {
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
     }
   }
 
@@ -303,7 +306,7 @@ export const SectionJobs = styled.section`
       border-right: 1px solid #e0e0e0;
       border-bottom: 1px solid ${colors.primaryColor};
       background-color: #fff;
-      height: 400px;
+      height: 350px;
       display: flex;
       padding: 10px;
       flex-direction: column;
@@ -347,14 +350,14 @@ export const SectionJobs = styled.section`
 
     .loginLikeFind {
       border: 1px solid transparent;
-      height: 400px;
+      height: 350px;
       background-position: top center;
       background-repeat: no-repeat;
       background-size: 100% 100%;
       background-image: url("https://images.unsplash.com/photo-1514997130083-2304083899de?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
 
       .img_overlay {
-        height: 400px;
+        height: 350px;
         background: rgba(54, 60, 75, 0.8);
         padding: 10px;
         display: flex;
@@ -384,7 +387,7 @@ export const SectionJobs = styled.section`
       justify-content: center;
       .btn_apply {
         border: none;
-        background-color: ${colors.primaryColor};
+        background-color: #ff7043;
         color: #ffff;
         border-radius: 15px;
         cursor: pointer;
@@ -478,11 +481,11 @@ export const ItemJob = styled.div`
 
   .rightSide {
     /* border: 1px solid blue; */
-    width: 75%;
+    width: 55%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    /* align-items: center; */
+    justify-content: center;
     padding: 20px 0 0 0px;
 
     .title {
@@ -513,7 +516,25 @@ export const ItemJob = styled.div`
   }
 
   .actions {
-    border: 1px solid red;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .btn_apply {
+      border: none;
+      background-color: ${colors.primaryColor};
+      color: #ffff;
+      border-radius: 15px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+      height: 40px;
+      margin-right: 15px;
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 `;
 export const FlexRow = styled.div`
@@ -655,16 +676,34 @@ export const NumbersSection = styled.section`
     flex-direction: row;
   }
   .item_count {
-    border: 1px solid green;
     height: 200px;
     background-color: ${colors.primaryColor};
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bg_dark {
+    background-color: #3dc73a;
+  }
+
+  .count {
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
   }
 `;
 
 export const BestSection = styled.section`
   max-width: 1200px;
   margin: auto;
+  .heading {
+    ${sharedProps};
+    h4 {
+      font-size: 20px;
+    }
+  }
+
   .container {
     ${sharedProps};
     display: flex;
@@ -673,35 +712,39 @@ export const BestSection = styled.section`
   .row {
     display: flex;
     flex-direction: column;
-    width:100%;
+    width: 100%;
     @media ${device.sm} {
-      flex-direction: row; 
-      justify-content:space-between;
+      flex-direction: row;
+      justify-content: space-between;
       margin-bottom: 10px;
     }
   }
   .item_offer {
     border-bottom: 1px solid ${colors.primaryColor};
-    background-color:#ffff;    
+    background-color: #ffff;
     height: 175px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding:10px;
-    margin-bottom:15px;
-    width:75%;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+
+    @media ${device.sm} {
+      width: 32%;
+    }
     .icon {
       color: ${colors.primaryColor};
       font-size: 40px;
     }
     .info {
-      h4{
-        font-size:20px;
-        font-weight:lighter;
+      h4 {
+        font-size: 20px;
+        font-weight: lighter;
       }
-      p{
-        color:#797979;
-        margin-top:10px;
+      p {
+        color: #797979;
+        margin-top: 10px;
       }
     }
 
@@ -709,6 +752,121 @@ export const BestSection = styled.section`
       /* width: 50%; */
     }
   }
+`;
+
+export const PaymentSection = styled.section`
+  max-width: 1200px;
+  margin: auto;
+  ${sharedProps};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 40px;
+
+  @media ${device.sm} {
+    flex-direction: row;
+  }
+
+  .item_pay {
+    border: 1px solid #e0e0e0;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 20px;
+    @media ${device.sm} {
+      width: 31%;
+    }
+
+    .heading {
+      height: 200px;
+      width: 100%;
+      ${centerContent};
+      position: relative;
+      border-bottom: 1px solid #9e9e9e;
+
+      .price {
+        position: absolute;
+        bottom: -60px;
+        background-color: #23C0E9;
+        width: 120px;
+        height: 120px;
+        border-radius: 38px;
+        transform: rotate(45deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .price_number {
+          transform: rotate(-45deg);
+          color: #ffff;
+          font-size: 22px;
+          font-weight:bold;
+        }
+      }
+      .bg_green {
+        background-color: #37D09C;
+      }
+      .bg_red {
+        background-color: #F36969;
+      }
+
+      h4 {
+        font-size: 20px;
+        font-weight: lighter;
+      }
+    }
+
+    .features {
+      height: 400px;
+      width: 100%;
+      padding: 80px 0 0 20px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      .divider {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        /* border:1px solid red; */
+      }
+      p {
+        margin-left: 10px;
+      }
+    }
+
+    .action {
+      height: 100px;
+      width: 100%;
+      ${centerContent};
+      padding: 50px;
+      .btn_apply {
+        border: none;
+        background-color: #0e1427;
+        color: #ffff;
+        border-radius: 15px;
+        cursor: pointer;
+        width: 100%;
+        font-weight: bold;
+        height: 40px;
+        &:focus {
+          outline: none;
+        }
+        &:hover{
+          background:${colors.primaryColor}
+        }
+      }
+    }
+  }
+`;
+
+export const AppSection = styled.section`
+  border:1px solid red;
+  height:600px;
+  max-width:1300px;
+  margin:auto;
 `;
 
 export const GridLayout = styled(Grid)`
