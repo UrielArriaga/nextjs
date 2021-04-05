@@ -210,7 +210,8 @@ const LoginButton = styled.a`
 `;
 const LogoCtn = styled.div`
   display: flex;
-  align-items: "center";
+  justify-content:center;
+  align-items:center;  
 `;
 
 const LinksCtn = styled.div`

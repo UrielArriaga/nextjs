@@ -1,5 +1,6 @@
 import { Box, Grid } from "@material-ui/core";
 import {
+  ArrowRight,
   Bookmark,
   Build,
   Code,
@@ -7,9 +8,14 @@ import {
   LocalAtm,
   LocationCity,
   LocationOn,
+  PersonOutline,
+  Room,
   Search,
+  SearchOutlined,
+  VerifiedUser,
 } from "@material-ui/icons";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
@@ -23,16 +29,20 @@ import {
   Hero,
   Category,
   Layer,
+  GridLayout,
   ItemJob,
-  ChildContainer,
-  JobPopular
+  SectionAside,
+  JobsByCategory,
+  JobsContainer,
+  JobPopular,
+  Test,
+  NumbersSection,
+  BestSection,
 } from "../styles/job.styles";
 
 export default function Job() {
   const stl = useStyles();
-
   const [optionSelect, setOptionSelect] = useState("");
-
   return (
     <Box className={stl.wrapper}>
       <Hero>
@@ -58,7 +68,7 @@ export default function Job() {
                   <select
                     name="select"
                     className={stl.inputSelect}
-                    value={"as"}
+                    defaultValue=""
                   >
                     <option value="value1">Lugar</option>
                     <option value="value2" selected>
@@ -124,82 +134,266 @@ export default function Job() {
           </Wrraper>
         </Layer>
       </Hero>
-      <div style={{ marginTop: 100 }}></div>
-      <ChildContainer>
-      <Grid container>
-        <Grid item  md={12} lg={9} xs={12}>
-          <SectionJobs>
-            <div className="filter">
-              <div className="title">
-                <p>NUEVOS TRABAJOS</p>
-                <hr class="dashed"></hr>
-              </div>
-              <div className="secondHalf">
-                <div
-                  className={
-                    optionSelect === "recientes" ? "option-select" : "option"
-                  }
-                  onClick={() => setOptionSelect("recientes")}
-                >
-                  <p>Nuevos</p>
+      {/* <div style={{ marginTop: 100, border: "1px solid gray" }}></div> */}
+      <JobsContainer>
+        <GridLayout container>
+          <Grid item xs={12} md={9} lg={9}>
+            <SectionJobs>
+              <div className="filter">
+                <div className="title">
+                  <p>NUEVOS TRABAJOS</p>
+                  <hr className="dashed"></hr>
                 </div>
-                <div
-                  className={
-                    optionSelect === "halftime" ? "option-select" : "option"
-                  }
-                  onClick={() => setOptionSelect("halftime")}
-                >
-                  <p>Medio Tiempo</p>
-                </div>
-                <div
-                  className={
-                    optionSelect === "completetime" ? "option-select" : "option"
-                  }
-                  onClick={() => setOptionSelect("completetime")}
-                >
-                  <p>Tiempo Completo</p>
-                </div>
-              </div>
-            </div>
-            {[1, 2, 3, 4].map((item, índex) => (
-              <ItemJob>
-                <div className="leftSide">
-                  <Image src="/img1.png" alt="me" width="50" height="50" />
-                </div>
-                <div className="rightSide">
-                  <p className="title">Software Engineer</p>
-                  <p className="subTitle">MizTech</p>
-                  <FlexRow className="locationC">
-                    <FlexRow>
-                      <LocationOn style={{ color: `${colors.primaryColor}` }} />
-                      <p className="location">Ciudad de mexico</p>
-                    </FlexRow>
-                    <FlexRow>
-                      <LocationOn style={{ color: `${colors.primaryColor}` }} />
-                      <p className="location">New york</p>
-                    </FlexRow>
-                  </FlexRow>
-                  <div className="timeJob">
-                    <p>Tiempo completo</p>
+                <div className="secondHalf">
+                  <div
+                    className={
+                      optionSelect === "recientes" ? "option-select" : "option"
+                    }
+                    onClick={() => setOptionSelect("recientes")}
+                  >
+                    <p>Nuevos</p>
+                  </div>
+                  <div
+                    className={
+                      optionSelect === "halftime" ? "option-select" : "option"
+                    }
+                    onClick={() => setOptionSelect("halftime")}
+                  >
+                    <p>Medio Tiempo</p>
+                  </div>
+                  <div
+                    className={
+                      optionSelect === "completetime"
+                        ? "option-select"
+                        : "option"
+                    }
+                    onClick={() => setOptionSelect("completetime")}
+                  >
+                    <p>Tiempo Completo</p>
                   </div>
                 </div>
-                {/* <div className="actions">
+              </div>
 
-            </div> */}
-              </ItemJob>
-            ))}
-          </SectionJobs>
-        </Grid>
+              {[1, 2, 3, 5].map((item, index) => (
+                <ItemJob key={index}>
+                  <div className="leftSide">
+                    <Image
+                      className="img"
+                      src="/img1.png"
+                      alt="me"
+                      width="50"
+                      height="50"
+                    />
+                  </div>
+                  <div className="rightSide">
+                    <p className="title">Software Engineer</p>
+                    <p className="subTitle">MizTech</p>
+                    <FlexRow className="locationC">
+                      <FlexRow>
+                        <LocationOn
+                          style={{ color: `${colors.primaryColor}` }}
+                        />
+                        <p className="location">Ciudad de mexico</p>
+                      </FlexRow>
+                      <FlexRow>
+                        <LocationOn
+                          style={{ color: `${colors.primaryColor}` }}
+                        />
+                        <p className="location">New york</p>
+                      </FlexRow>
+                    </FlexRow>
+                    <div className="timeJob">
+                      <p>Tiempo completo</p>
+                    </div>
+                  </div>
+                </ItemJob>
+              ))}
 
-        <Grid item md={12}  xs={12} lg={3}>
-          <div >
+              <Grid container spacing={0} className="loginContainer">
+                <Grid item xs={12} md={6} className="loginLikeEm">
+                  <PersonOutline className="icon" />
+                  <h4 className="title">BUSCO EMPLEO</h4>
+                  <p className="description">
+                    Ex cillum ullamco eu elit nostrud nisi. Do ad consectetur
+                    nisi laborum cupidatat id. Proident incididunt eiusmod non
+                    amet ullamco nulla ex ullamco esse tempor occaecat.
+                  </p>
+
+                  <Box className="flex_btn">
+                    <input
+                      className="btn_apply"
+                      type="button"
+                      value="Aplicar Ahora"
+                    />
+                  </Box>
+                </Grid>
+
+                <Grid item xs={12} md={6} className="loginLikeFind">
+                  <Box className="img_overlay">
+                    <LocationCity className="icon" />
+                    <h4 className="title">BUSCO TALENTO</h4>
+                    <p className="description">
+                      Ex cillum ullamco eu elit nostrud nisi. Do ad consectetur
+                      nisi laborum cupidatat id. Proident incididunt eiusmod non
+                      amet ullamco nulla ex ullamco esse tempor occaecat magna
+                      qui.
+                    </p>
+
+                    <Box className="flex_btn">
+                      <input
+                        className="btn_apply"
+                        type="button"
+                        value="Aplicar Ahora"
+                      />
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            </SectionJobs>
+          </Grid>
+
+          <Grid item xs={12} md={3} lg={3}>
+            <SectionAside>
+              <JobsByCategory>
+                <Box className="heading">
+                  <h4>Trabajos por categoria</h4>
+                </Box>
+                <Box className="content">
+                  {[1, 2, 3, 4, 6, 7, 8].map((item, index) => (
+                    <Link href="/" key={index}>
+                      <FlexRow className="separation">
+                        <ArrowRight className="colorIcon" />
+                        <p className="category">Diseño Grafico (245)</p>
+                      </FlexRow>
+                    </Link>
+                  ))}
+                </Box>
+                <Box className="flex_btn">
+                  <FlexRow className="separation">
+                    <ArrowRight className="colorIcon" />
+                    <p className="category_all">Ver todas la categorias)</p>
+                  </FlexRow>
+                </Box>
+              </JobsByCategory>
               <JobPopular>
-                
+                <Box className="heading">
+                  <h4>Trabajo patrocinado</h4>
+                </Box>
+                <Box className="content">
+                  <img src="http://www.webstrot.com/html/tm/thejobs/images/content/spotlight_img.jpg" />
+                  <h4 className="separation">Ejecutivo/Asesor De Ventas</h4>
+                  <p className="separation">Webstrot Technology Ltd.</p>
+                  <FlexRow className="separation">
+                    <LocalAtm className="colorIcon" />
+                    <p>6,000MXN - 10,000MXN</p>
+                  </FlexRow>
+                  <FlexRow className="separation">
+                    <Room className="colorIcon" />
+                    <p>Guadalajara, Jal.</p>
+                  </FlexRow>
+                </Box>
+                <Box className="flex_btn">
+                  <input
+                    className="btn_apply"
+                    type="button"
+                    value="Aplicar Ahora"
+                  />
+                </Box>
               </JobPopular>
-          </div>
-        </Grid>
-      </Grid>
-      </ChildContainer>
+            </SectionAside>
+          </Grid>
+        </GridLayout>
+      </JobsContainer>
+
+      <NumbersSection>
+        <Box className="item_count"></Box>
+        <Box className="item_count"></Box>
+        <Box className="item_count"></Box>
+        <Box className="item_count"></Box>
+      </NumbersSection>
+
+      <BestSection>
+        <Box className="container">
+          <Box className="row">
+            <Box className="item_offer">
+              <Box>
+                <SearchOutlined className="icon" />
+              </Box>
+              <Box className="info">
+                <h4>Buscar empleo</h4>
+                <p>
+                  Ad sit cillum aute sit et ad fugiat cupidatat mollit occaecat
+                  sunt dolore deserunt ullamco.
+                </p>
+              </Box>
+            </Box>
+
+            <Box className="item_offer">
+              <Box>
+                <VerifiedUser className="icon" />
+              </Box>
+              <Box className="info">
+                <h4>Tu informacion esta segura</h4>
+                <p>
+                  Ad sit cillum aute sit et ad fugiat cupidatat mollit occaecat
+                  sunt dolore deserunt ullamco.
+                </p>
+              </Box>
+            </Box>
+            <Box className="item_offer">
+              <Box>
+                <SearchOutlined className="icon" />
+              </Box>
+              <Box className="info">
+                <h4>Buscar empleo</h4>
+                <p>
+                  Ad sit cillum aute sit et ad fugiat cupidatat mollit occaecat
+                  sunt dolore deserunt ullamco.
+                </p>
+              </Box>
+            </Box>
+          </Box>
+          <Box className="row">
+            <Box className="item_offer">
+              <Box>
+                <SearchOutlined className="icon" />
+              </Box>
+              <Box className="info">
+                <h4>Buscar empleo</h4>
+                <p>
+                  Ad sit cillum aute sit et ad fugiat cupidatat mollit occaecat
+                  sunt dolore deserunt ullamco.
+                </p>
+              </Box>
+            </Box>
+
+            <Box className="item_offer">
+              <Box>
+                <SearchOutlined className="icon" />
+              </Box>
+              <Box className="info">
+                <h4>Buscar empleo</h4>
+                <p>
+                  Ad sit cillum aute sit et ad fugiat cupidatat mollit occaecat
+                  sunt dolore deserunt ullamco.
+                </p>
+              </Box>
+            </Box>
+            <Box className="item_offer">
+              <Box>
+                <SearchOutlined className="icon" />
+              </Box>
+              <Box className="info">
+                <h4>Buscar empleo</h4>
+                <p>
+                  Ad sit cillum aute sit et ad fugiat cupidatat mollit occaecat
+                  sunt dolore deserunt ullamco.
+                </p>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </BestSection>
     </Box>
   );
 }

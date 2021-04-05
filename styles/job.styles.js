@@ -1,39 +1,126 @@
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
 export let colors = {
   primaryColor: "#3FD23C",
   second: "#23c0e9",
 };
 
+const sizes = {
+  small: 480,
+};
 
+const sharedProps = css`
+  padding: 20px 15px 10px 15px;
+`;
 
-export const Container = styled.div`
-  /* border: 1px solid red; */
-  /* height: 80vh; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 1200px;
-  padding-top: 30px;
-  padding: 20px;
-  /* border:2px solid red;   */
-  margin: auto;
-  margin-bottom: 300px;
-  background-color: #f9f9f9;
+export const breakpoint = (
+  cssProp = "padding", // the CSS property to apply to the breakpoints
+  cssPropUnits = "px", // the units of the CSS property (can set equal to "" and apply units to values directly)
+  values = [], // array of objects, e.g. [{ 800: 60 }, ...] <-- 800 (key) = screen breakpoint, 60 (value) = CSS prop breakpoint
+  mediaQueryType = "min-width" // media query breakpoint type, i.e.: max-width, min-width, max-height, min-height
+) => {
+  const breakpointProps = values.reduce((mediaQueries, value) => {
+    const [screenBreakpoint, cssPropBreakpoint] = [
+      Object.keys(value)[0],
+      Object.values(value)[0],
+    ];
+    return (mediaQueries += `
+    @media screen and (${mediaQueryType}: ${screenBreakpoint}px) {
+      ${cssProp}: ${cssPropBreakpoint}${cssPropUnits};
+    }
+    `);
+  }, "");
+  return css([breakpointProps]);
+};
 
-  @media (max-width: 1200px) {
-    max-width: 1100px;
+export const breakpoints = {
+  xs: 480,
+  sm: 768,
+  md: 992,
+  lg: 1200,
+  xl: 1440,
+  xxl: 1800,
+};
+
+export const size = {
+  xs: `${breakpoints.xs}px`,
+  sm: `${breakpoints.sm}px`,
+  md: `${breakpoints.md}px`,
+  lg: `${breakpoints.lg}px`,
+  xl: `${breakpoints.xl}px`,
+  xxl: `${breakpoints.xxl}px`,
+};
+
+export const device = {
+  xs: `(min-width: ${size.xs})`,
+  sm: `(min-width: ${size.sm})`,
+  md: `(min-width: ${size.md})`,
+  lg: `(min-width: ${size.lg})`,
+  xl: `(min-width: ${size.xl})`,
+  xxl: `(min-width: ${size.xxl})`,
+};
+
+export const Test = styled.div`
+  padding: 100px;
+  background-color: red;
+  ${breakpoint("background-color", "", [
+    { 1200: "purple" },
+    { 800: "pink" },
+    { 600: "blue" },
+    { 450: "red" },
+  ])}
+`;
+
+const HeaderKeyFrame = keyframes`
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+`;
+
+export const Hero = styled.div`
+  background-position: top center;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation-name: ${HeaderKeyFrame};
+  animation-duration: 20s;
+  background-size: 120% 100%;
+  animation-iteration-count: infinite;
+  background-image: url("https://images.unsplash.com/photo-1577412647305-991150c7d163?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+
+  @media (min-width: 480px) {
+    background-color: green;
   }
-  @media (max-width: 1024px) {
-    max-width: 924px;
+  @media (min-width: 768px) {
+    background-color: black;
+    /* width: 30%; */
   }
-  @media (max-width: 768px) {
-    max-width: 668px;
+  @media (min-width: 1024px) {
+    background-color: purple;
+    /* width: 16.66%; */
+    min-height: 90vh;
   }
-  @media (max-width: 480px) {
-    max-width: 658px;
-    padding: 10px;
-    /* background-color: green; */
+  @media (min-width: 1200px) {
+    /* background-color: red; */
+  }
+`;
+export const Layer = styled.div`
+  background: rgba(54, 60, 75, 0.9);
+  overflow: hidden;
+  height: 100%;
+  z-index: 2;
+
+  @media (min-width: 1024px) {
+    /* width: 16.66%; */
+    min-height: 90vh;
   }
 `;
 export const Wrraper = styled.div`
@@ -51,6 +138,34 @@ export const Wrraper = styled.div`
   @media (min-width: 1024px) {
     /* width: 16.66%; */
     height: 80vh;
+  }
+`;
+export const Container = styled.div`
+  /* height: 80vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1200px;
+  padding-top: 30px;
+  padding: 20px;
+  /* border:2px solid red;   */
+  margin: auto;
+  margin-bottom: 300px;
+  background-color: red;
+
+  @media (max-width: 1200px) {
+    max-width: 1100px;
+  }
+  @media (max-width: 1024px) {
+    max-width: 924px;
+  }
+  @media (max-width: 768px) {
+    max-width: 668px;
+  }
+  @media (max-width: 480px) {
+    max-width: 658px;
+    padding: 10px;
+    /* background-color: green; */
   }
 `;
 export const Category = styled.div`
@@ -101,17 +216,28 @@ export const Category = styled.div`
     /* background-color: red; */
   }
 `;
+export const JobsContainer = styled.main`
+  /* border: 1px solid red; */
+  /* height: 80vh; */
+  /* display: flex;
+  flex-direction: column; */
+  max-width: 1200px;
+  /* width:100%; */
+  /* padding: 20px 15px 100px 15px; */
+  margin: auto;
+`;
 
-export const ChildContainer = styled.section`
+export const SectionAside = styled.section`
   /* border: 1px solid red; */
   /* height: 80vh; */
   display: flex;
   flex-direction: column;
-  max-width: 1300px;
+  max-width: 1200px;
   /* width:100%; */
-  padding: 20px 15px 100px 15px;
+  padding: 20px 15px 10px 15px;
   margin: auto;
-  `
+`;
+
 export const SectionJobs = styled.section`
   /* border: 1px solid red; */
   /* height: 80vh; */
@@ -119,7 +245,7 @@ export const SectionJobs = styled.section`
   flex-direction: column;
   max-width: 1200px;
   /* width:100%; */
-  padding: 20px 15px 100px 15px;
+  padding: 20px 15px 10px 15px;
   margin: auto;
 
   .filter {
@@ -138,9 +264,8 @@ export const SectionJobs = styled.section`
     }
 
     .secondHalf {
-      margin-top: 20px;      
+      margin-top: 20px;
 
-      
       .option {
         /* background: rgba(54, 60, 75, 0.1); */
         border: 1px solid rgba(54, 60, 75, 0.2);
@@ -148,7 +273,12 @@ export const SectionJobs = styled.section`
         padding-left: 30px;
         display: flex;
         align-items: center;
-        cursor: pointer;                
+        cursor: pointer;
+        transition: background 0.4s;
+        &:hover {
+          background: ${colors.primaryColor};
+          color: #fff;
+        }
       }
 
       .option-select {
@@ -160,7 +290,112 @@ export const SectionJobs = styled.section`
         align-items: center;
         color: #fff;
         cursor: pointer;
-      }     
+      }
+    }
+  }
+
+  .loginContainer {
+    /* border:1px solid green; */
+
+    .loginLikeEm {
+      border-top: 1px solid #e0e0e0;
+      border-left: 1px solid #e0e0e0;
+      border-right: 1px solid #e0e0e0;
+      border-bottom: 1px solid ${colors.primaryColor};
+      background-color: #fff;
+      height: 400px;
+      display: flex;
+      padding: 10px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .icon {
+        color: ${colors.primaryColor};
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+      .title {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #000;
+      }
+      .description {
+        color: #797979;
+        margin-bottom: 10px;
+        text-align: justify;
+      }
+      .flex_btn {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        .btn_apply {
+          border: none;
+          background-color: ${colors.primaryColor};
+          color: #ffff;
+          border-radius: 15px;
+          cursor: pointer;
+          width: 40%;
+          font-weight: bold;
+          height: 40px;
+          margin-bottom: 15px;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+
+    .loginLikeFind {
+      border: 1px solid transparent;
+      height: 400px;
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-image: url("https://images.unsplash.com/photo-1514997130083-2304083899de?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+
+      .img_overlay {
+        height: 400px;
+        background: rgba(54, 60, 75, 0.8);
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .icon {
+      color: ${colors.primaryColor};
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .description {
+      color: #f5f5f5;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+    .flex_btn {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      .btn_apply {
+        border: none;
+        background-color: ${colors.primaryColor};
+        color: #ffff;
+        border-radius: 15px;
+        cursor: pointer;
+        width: 40%;
+        font-weight: bold;
+        height: 40px;
+        margin-bottom: 15px;
+        &:focus {
+          outline: none;
+        }
+      }
     }
   }
 
@@ -169,7 +404,7 @@ export const SectionJobs = styled.section`
   }
   @media (min-width: 1024px) {
     /* width: 16.66%; */
-    height: 80vh;
+    /* height: 80vh; */
     /* border: 1px solid red; */
     .filter {
       /* border: 1px solid red; */
@@ -189,7 +424,7 @@ export const SectionJobs = styled.section`
       .secondHalf {
         display: flex;
         margin-top: 0px;
-        
+
         .option {
           /* background: rgba(54, 60, 75, 0.1); */
           border: 1px solid rgba(54, 60, 75, 0.2);
@@ -199,7 +434,7 @@ export const SectionJobs = styled.section`
           display: flex;
           align-items: center;
         }
-        
+
         .option-select {
           background: ${colors.primaryColor};
           border: 1px solid rgba(54, 60, 75, 0.2);
@@ -218,6 +453,7 @@ export const ItemJob = styled.div`
   height: 180px;
   /* border: 1px solid pink; */
   display: flex;
+  cursor: pointer;
   background-color: #ffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -231,9 +467,13 @@ export const ItemJob = styled.div`
     width: 25%;
     display: flex;
     align-items: flex-start;
-    /* align-items:center; */
+    align-items: center;
     justify-content: center;
     padding-top: 20px;
+
+    .img {
+      border: 1px solid red;
+    }
   }
 
   .rightSide {
@@ -272,8 +512,8 @@ export const ItemJob = styled.div`
     }
   }
 
-  .actions{
-    border:1px solid red;
+  .actions {
+    border: 1px solid red;
   }
 `;
 export const FlexRow = styled.div`
@@ -285,66 +525,196 @@ export const FlexColumn = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const HeaderKeyFrame = keyframes`
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-`;
-export const Hero = styled.div`
-  background-position: top center;
-  position: relative;
-  background-repeat: no-repeat;
-  background-size: cover;
-  animation-name: ${HeaderKeyFrame};
-  animation-duration: 20s;
-  background-size: 120% 100%;
-  animation-iteration-count: infinite;
-  background-image: url("https://images.unsplash.com/photo-1577412647305-991150c7d163?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
 
-  @media (min-width: 480px) {
-    background-color: green;
-  }
-  @media (min-width: 768px) {
-    background-color: black;
-    /* width: 30%; */
-  }
-  @media (min-width: 1024px) {
-    background-color: purple;
-    /* width: 16.66%; */
-    min-height: 90vh;
-  }
-  @media (min-width: 1200px) {
-    /* background-color: red; */
-  }
-`;
-export const Layer = styled.div`
-  background: rgba(54, 60, 75, 0.9);
-  overflow: hidden;
-  height: 100%;
-  z-index: 2;
-
-  @media (min-width: 1024px) {
-    /* width: 16.66%; */
-    min-height: 90vh;
-  }
-`;
 export const JobPopular = styled.div`
-  height:485px;
-  border:1px solid red;
+  margin-bottom: 22px;
+  /* border:1px solid red; */
+  background-color: #ffff;
+  border-bottom: 1px solid ${colors.primaryColor};
 
-  .heading{
-    height:40px;
-    border-top-right-radius:10px;
-    border-top-left-radius:10px;
+  @media (min-width: 1024px) {
+    height: 485px;
+  }
+  .heading {
+    /* height:40px; */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    /* border:1px solid red; */
+    height: 45px;
+    background-color: ${colors.primaryColor};
+    padding: 15px 0 0 10px;
+    color: #ffff;
+    h4 {
+      font-weight: normal;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+
+    .separation {
+      margin-top: 20px;
+    }
+
+    .colorIcon {
+      color: ${colors.primaryColor};
+    }
+  }
+
+  .flex_btn {
+    display: flex;
+    justify-content: center;
+    .btn_apply {
+      border: none;
+      background-color: ${colors.primaryColor};
+      color: #ffff;
+      border-radius: 15px;
+      cursor: pointer;
+      width: 40%;
+      font-weight: bold;
+      height: 40px;
+      margin-bottom: 15px;
+      &:focus {
+        outline: none;
+      }
+    }
   }
 `;
 
+export const JobsByCategory = styled.div`
+  margin-bottom: 22px;
+  /* border:1px solid red; */
+  background-color: #ffff;
+  border-bottom: 1px solid ${colors.primaryColor};
+
+  @media (min-width: 1024px) {
+    height: 485px;
+  }
+  .heading {
+    /* height:40px; */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    /* border:1px solid red; */
+    height: 45px;
+    background-color: ${colors.primaryColor};
+    padding: 15px 0 0 10px;
+    color: #ffff;
+    h4 {
+      font-weight: normal;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+
+    .separation {
+      margin-top: 20px;
+    }
+
+    .colorIcon {
+      color: ${colors.primaryColor};
+    }
+
+    .category {
+      color: #797979;
+      transition: color 1s;
+      cursor: pointer;
+      &:hover {
+        color: ${colors.primaryColor};
+      }
+    }
+  }
+  .flex_btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    .colorIcon {
+      color: ${colors.primaryColor};
+    }
+    .category_all {
+      color: ${colors.primaryColor};
+    }
+  }
+`;
+
+export const NumbersSection = styled.section`
+  /* border:1px solid red; */
+  padding: 20px 15px 10px 15px;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  justify-content: space-around;
+  margin: auto;
+  @media ${device.md} {
+    flex-direction: row;
+  }
+  .item_count {
+    border: 1px solid green;
+    height: 200px;
+    background-color: ${colors.primaryColor};
+    width: 100%;
+  }
+`;
+
+export const BestSection = styled.section`
+  max-width: 1200px;
+  margin: auto;
+  .container {
+    ${sharedProps};
+    display: flex;
+    flex-direction: column;
+  }
+  .row {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    @media ${device.sm} {
+      flex-direction: row; 
+      justify-content:space-between;
+      margin-bottom: 10px;
+    }
+  }
+  .item_offer {
+    border-bottom: 1px solid ${colors.primaryColor};
+    background-color:#ffff;    
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    margin-bottom:15px;
+    width:75%;
+    .icon {
+      color: ${colors.primaryColor};
+      font-size: 40px;
+    }
+    .info {
+      h4{
+        font-size:20px;
+        font-weight:lighter;
+      }
+      p{
+        color:#797979;
+        margin-top:10px;
+      }
+    }
+
+    @media ${device.sm} {
+      /* width: 50%; */
+    }
+  }
+`;
+
+export const GridLayout = styled(Grid)`
+  /* border:3px solid green; */
+  margin-bottom: 10px;
+`;
 
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
