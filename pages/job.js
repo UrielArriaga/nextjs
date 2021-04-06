@@ -19,6 +19,7 @@ import {
   SearchOutlined,
   VerifiedUser,
 } from "@material-ui/icons";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -52,9 +53,13 @@ export default function Job() {
   const [optionSelect, setOptionSelect] = useState("");
   return (
     <Box className={stl.wrapper}>
+      <Head>
+        <title>CV | JOBS </title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Hero>
         <Layer>
-        <NavBar isHome={true} />
+          <NavBar isHome={true} />
           <Wrraper className={stl.homeText}>
             <Box className={stl.firstHalf}>
               <Box className={stl.flexColumn}>
