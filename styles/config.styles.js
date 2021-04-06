@@ -9,7 +9,7 @@ const sizes = {
   small: 480,
 };
 
-const sharedProps = css`
+export const sharedProps = css`
   padding: 20px 15px 10px 15px;
 `;
 const centerContent = css`
@@ -63,3 +63,9 @@ export const device = {
   xl: `(min-width: ${size.xl})`,
   xxl: `(min-width: ${size.xxl})`,
 };
+
+export const FlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;

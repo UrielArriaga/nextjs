@@ -123,12 +123,16 @@ export default function NavBar({ isHome }) {
             CVJOBS
           </p>
         </LogoCtn>
-        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
-        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
-        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
-        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
-        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
+        <StyledBurger open={openMenu} onClick={() => toggleMenu()}>
+            <div />
+            <div />
+            <div />
+          </StyledBurger>
+        {[1,2,3,4,5,1,,1,1,1,1,1,1,,1,1,1,1,1,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1].map((item,index)=> (
+          <p  key={index} style={{ color: "#000",marginTop:20 }}>INICIO</p>
+        ))}
         
+
       </DrawerNavigation>
     </Nav>
   );
@@ -160,7 +164,7 @@ const RowWithColor = styled(ArrowDropDown)`
   color: ${colors.primaryColor};
 `;
 const DrawerNavigation = styled.div`
-  width: 275px;
+  width:320px;
   padding: 20px;
   padding-top: 100px;
   height: 100vh;
@@ -175,6 +179,7 @@ const DrawerNavigation = styled.div`
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
   text-align: left;
   padding: 2rem;
+  overflow:scroll;
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
@@ -184,9 +189,9 @@ const DrawerNavigation = styled.div`
   }
 `;
 const RightOptions = styled.div`
-  display: flex;
-  @media (max-width: 480px) {
-    display: none;
+  display: none;
+  @media ${device.md}{
+    display:flex;
   }
 `;
 const LoginCtn = styled.div`
@@ -307,7 +312,8 @@ const StyledBurger = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ open }) => (open ? "#EFFFFA" : "#EFFFFA")};
+    /* background: ${({ open }) => (open ? "#EFFFFA" : "#EFFFFA")}; */
+    background-color:#000;
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;

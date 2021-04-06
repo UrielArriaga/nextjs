@@ -186,7 +186,7 @@ export default function Job() {
                 </div>
               </div>
 
-              {[1, 2, 3, 5].map((item, index) => (
+              {[1, 2, 3, 5,6,7,8].map((item, index) => (
                 <ItemJob key={index}>
                   <Box className="row_job">
                     <div className="leftSide">
@@ -223,6 +223,7 @@ export default function Job() {
                   </Link>
                 </ItemJob>
               ))}
+
 
               <Grid container spacing={0} className="loginContainer">
                 <Grid item xs={12} md={6} className="loginLikeEm">
