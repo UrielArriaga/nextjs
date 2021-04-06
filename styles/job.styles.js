@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import styled, { css, keyframes } from "styled-components";
 
 export let colors = {
-  primaryColor: "#3FD23C",
+  primaryColor: "#37D09C",
   second: "#23c0e9",
 };
 
@@ -453,88 +453,122 @@ export const SectionJobs = styled.section`
   }
 `;
 export const ItemJob = styled.div`
-  height: 180px;
+  /* height: 200px; */
   /* border: 1px solid pink; */
   display: flex;
+  flex-direction: column;
   cursor: pointer;
+  border-left:3px solid ${colors.primaryColor};
   background-color: #ffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   margin-bottom: 20px;
-
+  padding:20px 0 20px 0;
   &:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
-  .leftSide {
-    /* border: 1px solid green; */
-    width: 25%;
-    display: flex;
-    align-items: flex-start;
-    align-items: center;
-    justify-content: center;
-    padding-top: 20px;
 
-    .img {
-      border: 1px solid red;
-    }
+  @media ${device.md}{
+    flex-direction:row;
+    justify-content:space-between;
   }
+  //
 
-  .rightSide {
-    /* border: 1px solid blue; */
-    width: 55%;
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
-    padding: 20px 0 0 0px;
-
-    .title {
-      font-weight: bold;
-    }
-    .subTitle {
-      color: #666666;
-      margin-top: 5px;
-    }
-    .locationC {
-      margin-top: 10px;
-    }
-    .location {
-      color: #9a9a9a;
-    }
-    .timeJob {
-      background-color: #546e7a;
-      width: 150px;
+  .row_job {
+    width:100%;
+    /* border: 1px solid green; */
+    display:flex;
+    .leftSide {
+      /* border: 1px solid green; */
+      width: 20%;
       display: flex;
+      align-items: flex-start;
+      align-items: center;
       justify-content: center;
-      padding: 5px;
-      border-radius: 5px;
-      margin-top: 20px;
-      p {
-        color: #ffff;
+      padding-top: 20px;
+
+      .img {
+        border: 1px solid red;
       }
+    }
+
+    .rightSide {
+      /* border: 1px solid blue; */
+      width: 65%;
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      justify-content: center;
+      padding: 20px 0 0 0px;
+
+      .title {
+        font-weight: bold;
+      }
+      .subTitle {
+        color: #9a9a9a;
+        margin-top: 5px;
+      }
+      .locationC {
+        margin-top: 10px;
+      }
+      .location {
+        color: #9a9a9a;
+      }
+      .icon{
+        color:${colors.primaryColor};        
+        margin-left:-5px;
+      }
+      
     }
   }
 
   .actions {
-    width: 20%;
+    /* width: 20%; */
     display: flex;
     align-items: center;
     justify-content: center;
+    padding:10px;
+    /* border:1px solid red; */
+
+    @media ${device.md}{
+    flex-direction:column;
+    align-items:flex-start
+  }
     .btn_apply {
       border: none;
       background-color: ${colors.primaryColor};
-      color: #ffff;
-      border-radius: 15px;
+      color: #ffff;     
       cursor: pointer;
-      width: 100%;
-      font-weight: bold;
-      height: 40px;
-      margin-right: 15px;
+      width:150px;
+      height:30px;
+      /* width: 100%; */
+      font-weight: bold;  
+      border-radius:10px;    
+      /* margin-right: 15px; */
 
       &:focus {
         outline: none;
       }
+
+      @media ${device.md}{
+        margin-top:10px;
+  }
     }
+
+    .timeJob {
+        background-color: #f36969;
+        /* width: 150px; */
+        height:30px;
+        width:150px;
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        border-radius: 10px;  
+        margin-right:10px;      
+        p {
+          color: #ffff;
+        }
+      }
   }
 `;
 export const FlexRow = styled.div`
@@ -684,7 +718,7 @@ export const NumbersSection = styled.section`
     align-items: center;
   }
   .bg_dark {
-    background-color: #3dc73a;
+    background-color: #28bf8d;
   }
 
   .count {
@@ -769,7 +803,7 @@ export const PaymentSection = styled.section`
   }
 
   .item_pay {
-    border: 1px solid #e0e0e0;
+    border: 2px solid #9e9e9e;
     height: 700px;
     display: flex;
     flex-direction: column;
@@ -874,7 +908,7 @@ export const AppSection = styled.section`
   background-image: url("https://images.unsplash.com/photo-1512428559087-560fa5ceab42?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
 
   .img_overlay {
-    background: rgba(2, 238, 0, 0.6);
+    background: rgba(55, 208, 156, 0.8);
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -908,44 +942,43 @@ export const AppSection = styled.section`
         width: 100%;
         /* border:1px solid white; */
         justify-content: center;
-        align-items:center;
-        flex-direction:column;
+        align-items: center;
+        flex-direction: column;
 
-        @media ${device.md}{
-          flex-direction:row;
-          align-items:flex-start;
+        @media ${device.md} {
+          flex-direction: row;
+          align-items: flex-start;
           justify-content: flex-start;
         }
         .btn_apply {
-          display:flex;
-          align-items:center;
-          justify-content:center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           border: none;
           background-color: #fff;
           color: #000;
           border-radius: 15px;
           cursor: pointer;
           width: 40%;
-          
-          height: 40px;
-          margin-top:15px;
 
-          @media ${device.md}{
-            margin-right:15px;
+          height: 40px;
+          margin-top: 15px;
+
+          @media ${device.md} {
+            margin-right: 15px;
           }
           &:focus {
             outline: none;
           }
 
-
-          .btn{
-            background-color:transparent;
+          .btn {
+            background-color: transparent;
             border: none;
             /* border:1px solid red; */
             font-weight: bold;
             &:focus {
-            outline: none;
-          }
+              outline: none;
+            }
           }
         }
       }

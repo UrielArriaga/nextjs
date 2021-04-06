@@ -1,24 +1,34 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowDropDown, PermIdentity, WorkOutline,Menu} from "@material-ui/icons";
+import {
+  ArrowDropDown,
+  PermIdentity,
+  WorkOutline,
+  Menu,
+} from "@material-ui/icons";
 import { useState } from "react";
 import { colors } from "../public/home.styles";
+import { device } from "../styles/config.styles";
 
+export default function NavBar({ isHome }) {
+  const [openMenu, setOpenMenu] = useState(false);
 
-
-export default function NavBar() {
-  const [openFirstMenu, setOpenFirstMenu] = useState(false);
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
 
   return (
-    <Nav>
+    <Nav isHome={isHome}>
       <Wrapper>
         <LogoCtn>
-          <WorkOutline style={{color:`${colors.primaryColor}`,fontSize:60}}/>
+          <WorkOutline
+            style={{ color: `${colors.primaryColor}`, fontSize: 60 }}
+          />
           {/* <Image src="/job.png" alt="me" width="60" height="50" /> */}
           <p
             style={{
-              color: "#ffff",
+              color: isHome ? "#fff" : "#000",
               marginLeft: 10,
               fontWeight: "bold",
               fontSize: 18,
@@ -28,7 +38,12 @@ export default function NavBar() {
           </p>
         </LogoCtn>
         <div>
-        <Menu style={{color:'#fff',fontSize:40}}/>
+          <StyledBurger open={openMenu} onClick={() => toggleMenu()}>
+            <div />
+            <div />
+            <div />
+          </StyledBurger>
+          {/* <Menu  style={{color: isHome ? "#fff": "#000",fontSize:40}} onClick={()=> toggleMenu()}/> */}
         </div>
         <RightOptions>
           <LinksCtn>
@@ -37,7 +52,7 @@ export default function NavBar() {
                 onMouseEnter={() => setOpenFirstMenu(true)}
                 onMouseLeave={() => setOpenFirstMenu(false)}
               >
-                <A>Inicio</A>
+                <A isHome={isHome}>Inicio</A>
                 <RowWithColor />
                 {/* {openFirstMenu && <MenuOption>
                     <p>Inicio</p>
@@ -47,63 +62,87 @@ export default function NavBar() {
             </Link>
             <Link href="/job">
               <FlexRow>
-                <A>Estoy buscando empleo</A>
+                <A isHome={isHome}>Estoy buscando empleo</A>
                 <RowWithColor />
               </FlexRow>
             </Link>
             <Link href="/job">
               <FlexRow>
-                <A>Busco personal</A>
+                <A isHome={isHome}>Busco personal</A>
                 <RowWithColor />
               </FlexRow>
             </Link>
             <Link href="/job">
               <FlexRow>
-                <A>Blog</A>
+                <A isHome={isHome}>Blog</A>
                 <RowWithColor />
               </FlexRow>
             </Link>
             <Link href="/job">
               <FlexRow>
-                <A>Pricing</A>
+                <A isHome={isHome}>Pricing</A>
                 <RowWithColor />
               </FlexRow>
             </Link>
             <Link href="/job">
               <FlexRow>
-                <A>Contacto</A>
+                <A isHome={isHome}>Contacto</A>
                 <RowWithColor />
               </FlexRow>
             </Link>
           </LinksCtn>
           <LoginCtn>
             <ButtonLogin>
-              <PermIdentity style={{color:"#ffff"}}/>
+              <PermIdentity style={{ color: "#ffff" }} />
               <Link href="/job">
                 <LoginButton>LOGIN</LoginButton>
               </Link>
             </ButtonLogin>
             <ButttonSigup>
               <Link href="/job">
-                <A>CREAR CUENTA</A>
+                <A isHome={isHome}>CREAR CUENTA</A>
               </Link>
             </ButttonSigup>
           </LoginCtn>
-        </RightOptions>         
-      </Wrapper>     
+        </RightOptions>
+      </Wrapper>
+      <DrawerNavigation open={openMenu}>
+        <LogoCtn>
+          <WorkOutline
+            style={{ color: `${colors.primaryColor}`, fontSize: 60 }}
+          />
+          {/* <Image src="/job.png" alt="me" width="60" height="50" /> */}
+          <p
+            style={{
+              color: '#000',
+              marginLeft: 10,
+              fontWeight: "bold",
+              fontSize: 18,
+            }}
+          >
+            CVJOBS
+          </p>
+        </LogoCtn>
+        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
+        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
+        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
+        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
+        <p style={{ color: "#000",marginTop:20 }}>INICIO</p>
+        
+      </DrawerNavigation>
     </Nav>
   );
 }
 
 const ButtonLogin = styled.div`
-  height:50px;
-  background-color:${colors.primaryColor};
-  display:flex;  
-  justify-content:center;
-  align-items:center;
-  padding-right:5px;
-  padding-left:5px;
-  border-radius:5px;  
+  height: 50px;
+  background-color: ${colors.primaryColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
 `;
 
 const ButttonSigup = styled.div``;
@@ -122,23 +161,40 @@ const RowWithColor = styled(ArrowDropDown)`
 `;
 const DrawerNavigation = styled.div`
   width: 275px;
+  padding: 20px;
+  padding-top: 100px;
   height: 100vh;
   background-color: #ffff;
   position: fixed;
   z-index: 10;
+  border: 1px solid red;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+  text-align: left;
+  padding: 2rem;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+
+  p {
+    color: red;
+  }
 `;
 const RightOptions = styled.div`
   display: flex;
   @media (max-width: 480px) {
-    display:none;
+    display: none;
   }
 `;
 const LoginCtn = styled.div`
   margin-left: 30px;
   border-left: 2px solid gray;
-  padding-left:10px;
-  display:flex;
-  align-items:center;  
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
 `;
 const FlexRow = styled.div`
   display: flex;
@@ -179,21 +235,21 @@ const Wrapper = styled.div`
 
 const Nav = styled.nav`
   height: 118px;
-  /* border: 1px solid blue; */
   width: 100%;
   margin: auto;
   display: flex;
-  /* background-color:#b2dfdb; */
+  background-color: ${(props) => (props.isHome ? "transparent" : "#fff")};
   /* border: 1px solid #b2dfdb; */
   align-items: center;
   border-bottom: 1px solid #757575;
+  /* border: 1px solid blue; */
 `;
 const A = styled.a`
   margin-left: 14px;
   font-size: 16px;
   border-spacing: 15px;
   padding-bottom: 5px;
-  color: #ffff;
+  color: ${(props) => (props.isHome ? "#ffff" : "#000")};
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-bottom: 2px solid transparent;
 `;
@@ -210,17 +266,64 @@ const LoginButton = styled.a`
 `;
 const LogoCtn = styled.div`
   display: flex;
-  justify-content:center;
-  align-items:center;  
+  justify-content: center;
+  align-items: center;
 `;
 
 const LinksCtn = styled.div`
   display: flex;
-  height:110px;
-  align-items:center;
-  justify-content:center;
+  height: 110px;
+  align-items: center;
+  justify-content: center;
   /* border:1px solid white; */
   @media (max-width: 480px) {
-    display:none;
+    display: none;
+  }
+`;
+
+const StyledBurger = styled.button`
+  position: absolute;
+  top: 5%;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media ${device.md} {
+    display: none;
+  }
+
+  div {
+    width: 2rem;
+    height: 0.25rem;
+    background: ${({ open }) => (open ? "#EFFFFA" : "#EFFFFA")};
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+
+    :first-child {
+      transform: ${({ open }) => (open ? "rotate(45deg)" : "rotate(0)")};
+    }
+
+    :nth-child(2) {
+      opacity: ${({ open }) => (open ? "0" : "1")};
+      transform: ${({ open }) => (open ? "translateX(20px)" : "translateX(0)")};
+    }
+
+    :nth-child(3) {
+      transform: ${({ open }) => (open ? "rotate(-45deg)" : "rotate(0)")};
+    }
   }
 `;

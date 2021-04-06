@@ -54,7 +54,7 @@ export default function Job() {
     <Box className={stl.wrapper}>
       <Hero>
         <Layer>
-          <NavBar />
+        <NavBar isHome={true} />
           <Wrraper className={stl.homeText}>
             <Box className={stl.firstHalf}>
               <Box className={stl.flexColumn}>
@@ -183,32 +183,32 @@ export default function Job() {
 
               {[1, 2, 3, 5].map((item, index) => (
                 <ItemJob key={index}>
-                  <div className="leftSide">
-                    <Image
-                      className="img"
-                      src="/img1.png"
-                      alt="me"
-                      width="50"
-                      height="50"
-                    />
-                  </div>
-                  <div className="rightSide">
-                    <p className="title">Software Engineer</p>
-                    <p className="subTitle">MizTech</p>
-                    <FlexRow className="locationC">
-                      <FlexRow>
-                        <LocationOn
-                          style={{ color: `${colors.primaryColor}` }}
-                        />
-                        <p className="location">Ciudad de mexico, Centro </p>
-                      </FlexRow>
-                    </FlexRow>
-                    <div className="timeJob">
-                      <p>Tiempo completo</p>
+                  <Box className="row_job">
+                    <div className="leftSide">
+                      <Image
+                        className="img"
+                        src="/img1.png"
+                        alt="me"
+                        width="50"
+                        height="50"
+                      />
                     </div>
-                  </div>
+                    <div className="rightSide">
+                      <p className="title">Software Engineer</p>
+                      <p className="subTitle">MizTech</p>
+                      <FlexRow className="locationC">
+                        <FlexRow>
+                          <LocationOn className="icon" />
+                          <p className="location">Ciudad de mexico, Centro </p>
+                        </FlexRow>
+                      </FlexRow>
+                    </div>
+                  </Box>
                   <Link href="/Jobdetail">
                     <Box className="actions">
+                      <div className="timeJob">
+                        <p>Tiempo completo</p>
+                      </div>
                       <input
                         type="button"
                         value="Aplicar Ahora"

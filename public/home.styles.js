@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import styled, { keyframes } from "styled-components";
 
 export let colors = {
-  primaryColor: "#3FD23C",
+  primaryColor: "#37D09C",
   second: "#23c0e9",
 };
 export const useStyles = makeStyles((theme) => ({
