@@ -2,6 +2,8 @@ import { Box, Grid } from "@material-ui/core";
 import {
   AddCircle,
   AddCircleOutline,
+  Android,
+  Apple,
   ArrowForwardIos,
   ArrowRight,
   Bookmark,
@@ -180,7 +182,7 @@ export default function Job() {
               </div>
 
               {[1, 2, 3, 5].map((item, index) => (
-                <ItemJob key={index}>                   
+                <ItemJob key={index}>
                   <div className="leftSide">
                     <Image
                       className="img"
@@ -199,20 +201,20 @@ export default function Job() {
                           style={{ color: `${colors.primaryColor}` }}
                         />
                         <p className="location">Ciudad de mexico, Centro </p>
-                      </FlexRow>                    
+                      </FlexRow>
                     </FlexRow>
                     <div className="timeJob">
                       <p>Tiempo completo</p>
                     </div>
                   </div>
                   <Link href="/Jobdetail">
-                  <Box className="actions">
-                    <input
-                      type="button"
-                      value="Aplicar Ahora"
-                      className="btn_apply"
-                    />
-                  </Box>
+                    <Box className="actions">
+                      <input
+                        type="button"
+                        value="Aplicar Ahora"
+                        className="btn_apply"
+                      />
+                    </Box>
                   </Link>
                 </ItemJob>
               ))}
@@ -318,13 +320,13 @@ export default function Job() {
           <p className="count">2540 +</p>
         </Box>
         <Box className="item_count bg_dark ">
-        <p className="count">2540 +</p>
+          <p className="count">2540 +</p>
         </Box>
         <Box className="item_count">
-        <p className="count">2540 +</p>
+          <p className="count">2540 +</p>
         </Box>
         <Box className="item_count  bg_dark">
-        <p className="count">2540 +</p>
+          <p className="count">2540 +</p>
         </Box>
       </NumbersSection>
 
@@ -416,9 +418,9 @@ export default function Job() {
       <PaymentSection>
         <Box className="item_pay">
           <Box className="heading">
-          <FlexColumn>
-            <h4>PLAN BASICO</h4>
-            <hr style={{border:'1px solid #23C0E9',marginTop:5}}/>
+            <FlexColumn>
+              <h4>PLAN BASICO</h4>
+              <hr style={{ border: "1px solid #23C0E9", marginTop: 5 }} />
             </FlexColumn>
             <Box className="price">
               <p className="price_number">$1000MXN</p>
@@ -452,8 +454,8 @@ export default function Job() {
         <Box className="item_pay">
           <Box className="heading">
             <FlexColumn>
-            <h4>PLAN BASICO</h4>
-            <hr style={{border:'1px solid #37D09C',marginTop:5}}/>
+              <h4>PLAN BASICO</h4>
+              <hr style={{ border: "1px solid #37D09C", marginTop: 5 }} />
             </FlexColumn>
             <Box className="price bg_green">
               <p className="price_number">$1000MXN</p>
@@ -486,9 +488,9 @@ export default function Job() {
         </Box>
         <Box className="item_pay">
           <Box className="heading">
-          <FlexColumn>
-            <h4>PLAN BASICO</h4>
-            <hr style={{border:'1px solid #F36969',marginTop:5}}/>
+            <FlexColumn>
+              <h4>PLAN BASICO</h4>
+              <hr style={{ border: "1px solid #F36969", marginTop: 5 }} />
             </FlexColumn>
             <Box className="price bg_red">
               <p className="price_number">$1000MXN</p>
@@ -521,15 +523,33 @@ export default function Job() {
         </Box>
       </PaymentSection>
 
+      <AppSection>
+        <Box className="img_overlay">
+          <Box className="info">
+            <h4>Descarga CVJOBS App</h4>
+            <p>
+              Descargala en menos de un minuto y disfruta de todos los
+              beneficios
+            </p>
+            <Box className="btns_content">
+              <Box className="btn_apply">
+                <Apple />
+                <input className="btn" type="button" value="App Store" />
+              </Box>
 
-      <AppSection>        
-        <Box className="photoapp">
-
-        </Box>
-        <Box className="info">
-
+              <Box className="btn_apply">
+                <Android />
+                <input className="btn" type="button" value="Play store" />
+              </Box>
+            </Box>
+          </Box>
+          <Box className="photoapp">
+            <img className="img" src="/app.png" />
+          </Box>
         </Box>
       </AppSection>
+
+      <div style={{ marginTop: 100 }}></div>
     </Box>
   );
 }

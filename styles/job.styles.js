@@ -790,7 +790,7 @@ export const PaymentSection = styled.section`
       .price {
         position: absolute;
         bottom: -60px;
-        background-color: #23C0E9;
+        background-color: #23c0e9;
         width: 120px;
         height: 120px;
         border-radius: 38px;
@@ -803,14 +803,14 @@ export const PaymentSection = styled.section`
           transform: rotate(-45deg);
           color: #ffff;
           font-size: 22px;
-          font-weight:bold;
+          font-weight: bold;
         }
       }
       .bg_green {
-        background-color: #37D09C;
+        background-color: #37d09c;
       }
       .bg_red {
-        background-color: #F36969;
+        background-color: #f36969;
       }
 
       h4 {
@@ -854,8 +854,8 @@ export const PaymentSection = styled.section`
         &:focus {
           outline: none;
         }
-        &:hover{
-          background:${colors.primaryColor}
+        &:hover {
+          background: ${colors.primaryColor};
         }
       }
     }
@@ -863,11 +863,123 @@ export const PaymentSection = styled.section`
 `;
 
 export const AppSection = styled.section`
-  border:1px solid red;
-  height:600px;
-  max-width:1300px;
-  margin:auto;
+  border: 1px solid red;
+  /* height: 600px; */
+  /* max-width:1300px; */
+  margin: auto;
+  border: 1px solid transparent;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("https://images.unsplash.com/photo-1512428559087-560fa5ceab42?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+
+  .img_overlay {
+    background: rgba(2, 238, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+
+    @media ${device.md} {
+      flex-direction: row-reverse;
+      height: 680px;
+    }
+
+    .info {
+      /* border: 1px solid white; */
+      margin-bottom: 10px;
+      ${sharedProps};
+      @media ${device.md} {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+      h4 {
+        /* font-weight:lighter; */
+        font-size: 44px;
+        color: #fff;
+      }
+      p {
+        color: #fff;
+        font-size: 18px;
+      }
+      .btns_content {
+        display: flex;
+        width: 100%;
+        /* border:1px solid white; */
+        justify-content: center;
+        align-items:center;
+        flex-direction:column;
+
+        @media ${device.md}{
+          flex-direction:row;
+          align-items:flex-start;
+          justify-content: flex-start;
+        }
+        .btn_apply {
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          border: none;
+          background-color: #fff;
+          color: #000;
+          border-radius: 15px;
+          cursor: pointer;
+          width: 40%;
+          
+          height: 40px;
+          margin-top:15px;
+
+          @media ${device.md}{
+            margin-right:15px;
+          }
+          &:focus {
+            outline: none;
+          }
+
+
+          .btn{
+            background-color:transparent;
+            border: none;
+            /* border:1px solid red; */
+            font-weight: bold;
+            &:focus {
+            outline: none;
+          }
+          }
+        }
+      }
+    }
+
+    .photoapp {
+      /* border: 1px solid red; */
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      @media ${device.md} {
+        ${sharedProps}
+      }
+
+      .img {
+        margin-bottom: -150px;
+        /* width:250px;         */
+        /* margin-top:150px;         */
+
+        @media ${device.md} {
+          width: 300px;
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
 `;
+
+// border: 1px solid transparent;
+// height: 350px;
+// background-position: top center;
+// background-repeat: no-repeat;
+// background-size: 100% 100%;
+// background-image: url("https://images.unsplash.com/photo-1514997130083-2304083899de?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
 
 export const GridLayout = styled(Grid)`
   /* border:3px solid green; */
