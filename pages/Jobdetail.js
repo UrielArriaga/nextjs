@@ -174,7 +174,7 @@ export default function JobDetail() {
                   <Star className="icon" />
                   <FlexColumn>
                     <p className="title">Categoria</p>
-                    <p className="subtitle">1+ año de experiencia</p>
+                    <p className="subtitle">Call Center</p>
                   </FlexColumn>
                 </FlexRow>
               </Box>
@@ -191,7 +191,7 @@ export default function JobDetail() {
       </DescriptionSection>
 
       <RelatedJobs>
-        <Grid container>        
+        <Grid container>
           <Grid item xs={12} md={8} lg={8} className="grid_item">
             <FlexColumn>
               <h2>Empleos relacionados</h2>

@@ -201,7 +201,6 @@ export const RelatedJobs = styled.section`
   padding: 10px;
   .grid_item {
     /* border: 1px solid red; */
-
     h2 {
       font-weight: lighter;
       margin-top: 20px;
@@ -222,7 +221,7 @@ export const RelatedJobs = styled.section`
       margin-right: 10px;
       margin-bottom:20px;
     }
-
+    
     .card_job{
 
     }

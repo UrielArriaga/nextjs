@@ -9,6 +9,7 @@ const sizes = {
   small: 480,
 };
 
+
 export const sharedProps = css`
   padding: 20px 15px 10px 15px;
 `;
