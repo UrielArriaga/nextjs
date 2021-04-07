@@ -150,6 +150,13 @@ export const Filter = styled.div`
       position: absolute;
       top: 47px;
       left: 0;
+      z-index:100;
+      padding:15px 0 0 15px;
+
+      .option_filter{
+        color:#000;
+        margin-bottom:20px;        
+      }
     }    
   }
 `;

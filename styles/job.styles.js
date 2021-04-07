@@ -1119,6 +1119,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "10%",
     display: "flex",
     justifyContent: "center",
+    alignItems:'center',
     backgroundColor: `${colors.primaryColor}`,
     borderRadius: 15,
     color: "#ffff",

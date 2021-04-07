@@ -1,9 +1,9 @@
 import { Box, Grid, Link } from "@material-ui/core";
-import { LocationOn, Search } from "@material-ui/icons";
+import { ArrowRight, LocationOn, Search } from "@material-ui/icons";
 import Image from "next/image";
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
-import { ItemJob } from "../styles/job.styles";
+import { ItemJob, JobsByCategory } from "../styles/job.styles";
 import {
   Container,
   FlexColumn,
@@ -116,10 +116,9 @@ export default function Empleos() {
                 <input type="button" className="btn_search" value="Buscar" />
               </FlexRow>
             </Box>
-            <Filter>
+            {/* <Filter>
               <Box className="item_filter">
                 <Box
-                  tabIndex="1"
                   className="open"
                   onClick={() => handleMenu(1)}
                   //   onBlur={handleBlur}
@@ -131,7 +130,9 @@ export default function Empleos() {
                     onBlur={() => console.log("blur")}
                     className={`item_menu`}
                   >
-                    <p onClick={() => console.log("red")}>sssss</p>
+                    <p className="option_filter">Indeterminado</p>
+                    <p className="option_filter">Tiempo completo</p>
+                    <p className="option_filter">Medio tiempo</p>
                   </Box>
                 )}
               </Box>
@@ -177,15 +178,14 @@ export default function Empleos() {
                   </Box>
                 )}
               </Box>
-            </Filter>
+            </Filter> */}
           </Box>
         </Box>
       </Header>
 
       <ResultsSection>
-        <Grid container>
+        <Grid container style={{display:'flex',flexDirection:'row-reverse'}}>
           <Grid item xs={12} lg={9}>
-              
             {[1, 2, 3, 5, 6, 7, 8].map((item, index) => (
               <ItemJob key={index}>
                 <Box className="row_job">
@@ -225,7 +225,75 @@ export default function Empleos() {
             ))}
           </Grid>
 
-          <Grid item xs={12} lg={3} ></Grid>
+          <Grid item xs={12} lg={3} style={{paddingRight:10}}>
+
+          <JobsByCategory>
+                <Box className="heading">
+                  <h4>Tipo de contrato</h4>
+                </Box>
+                <Box className="content">
+                  {[1, 2, 3, 4, 6, 7, 8].map((item, index) => (
+                    <Link href="/" key={index}>
+                      <FlexRow className="separation">
+                        <ArrowRight className="colorIcon" />
+                        <p className="category">Contrato inmediato</p>
+                      </FlexRow>
+                    </Link>
+                  ))}
+                </Box>
+                <Box className="flex_btn">
+                  <FlexRow className="separation">
+                    <ArrowRight className="colorIcon" />
+                    <p className="category_all">Ver todas la categorias)</p>
+                  </FlexRow>
+                </Box>
+              </JobsByCategory>
+
+
+              <JobsByCategory>
+                <Box className="heading">
+                  <h4>Jornada Laboral</h4>
+                </Box>
+                <Box className="content">
+                  {[1, 2, 3, 4, 6, 7, 8].map((item, index) => (
+                    <Link href="/" key={index}>
+                      <FlexRow className="separation">
+                        <ArrowRight className="colorIcon" />
+                        <p className="category">Tiempo Completo</p>
+                      </FlexRow>
+                    </Link>
+                  ))}
+                </Box>
+                <Box className="flex_btn">
+                  <FlexRow className="separation">
+                    <ArrowRight className="colorIcon" />
+                    <p className="category_all">Ver todas la categorias)</p>
+                  </FlexRow>
+                </Box>
+              </JobsByCategory>
+
+              <JobsByCategory>
+                <Box className="heading">
+                  <h4>Jornada Laboral</h4>
+                </Box>
+                <Box className="content">
+                  {[1, 2, 3, 4, 6, 7, 8].map((item, index) => (
+                    <Link href="/" key={index}>
+                      <FlexRow className="separation">
+                        <ArrowRight className="colorIcon" />
+                        <p className="category">Tiempo Completo</p>
+                      </FlexRow>
+                    </Link>
+                  ))}
+                </Box>
+                <Box className="flex_btn">
+                  <FlexRow className="separation">
+                    <ArrowRight className="colorIcon" />
+                    <p className="category_all">Ver todas la categorias)</p>
+                  </FlexRow>
+                </Box>
+              </JobsByCategory>
+          </Grid>
         </Grid>
       </ResultsSection>
     </Container>

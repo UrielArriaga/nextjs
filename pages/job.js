@@ -91,11 +91,12 @@ export default function Job() {
                   {/* <input className={stl.input} placeholder="Lugar" /> */}
                   <FlexRow className={stl.btnSearch}>
                     <Search />
-                    <input
-                      type="button"
+                    <Link href="/empleos">
+                    <a                      
                       className={stl.btnClick}
-                      value="Buscar"
-                    />
+                      
+                    >Buscar</a>
+                    </Link>
                   </FlexRow>
                 </Box>
                 <FlexRow className={stl.flexWrap}>
