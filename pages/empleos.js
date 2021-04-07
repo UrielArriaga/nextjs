@@ -185,6 +185,7 @@ export default function Empleos() {
       <ResultsSection>
         <Grid container>
           <Grid item xs={12} lg={9}>
+              
             {[1, 2, 3, 5, 6, 7, 8].map((item, index) => (
               <ItemJob key={index}>
                 <Box className="row_job">
