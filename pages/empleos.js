@@ -116,7 +116,7 @@ export default function Empleos() {
                 <input type="button" className="btn_search" value="Buscar" />
               </FlexRow>
             </Box>
-            {/* <Filter>
+            <Filter>
               <Box className="item_filter">
                 <Box
                   className="open"
@@ -178,7 +178,7 @@ export default function Empleos() {
                   </Box>
                 )}
               </Box>
-            </Filter> */}
+            </Filter>
           </Box>
         </Box>
       </Header>

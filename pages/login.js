@@ -1,8 +1,6 @@
-import Head from 'next/head'
-
 import React from 'react'
 
-export default function Meta() {
+export default function login() {
     return (
         <div>
             
